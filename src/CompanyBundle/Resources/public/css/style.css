@@ -1,0 +1,120 @@
+.docono_menu_icon {
+    background-size: 30px 30px !important;
+    background-image: url('../img/megaphone.png') !important;
+}
+.docono_menu_icon:hover {
+    background-size: 30px 30px !important;
+    background-image: url('../img/megaphone_white.png') !important;
+}
+
+.docono_menu_icon:after {
+    background-color: #f08318 !important;
+}
+
+.docono_icon_megaphone {
+    background-size: 20px 20px;
+    background-image: url('../img/megaphone_white.png');
+}
+
+.x-tab-active .docono_icon_megaphone {
+    background-image: url('../img/megaphone.png');
+}
+
+
+.docono_icon_info {
+    background-size: 20px 20px;
+    background-image: url('../img/information.png');
+}
+
+.docono_icon_advanced {
+    background-size: 20px 20px;
+    background-image: url('../img/cog.png');
+}
+
+.docono_icon_save {
+    width: 20px !important;
+    height: 20px !important;
+    background-image: url('../img/rocket.png');
+}
+
+.docono_icon_site {
+    background-size: 20px 20px;
+    background-image: url('../img/building.png');
+}
+
+.docono_icon_delete {
+    background-image: url('../img/delete_orange.png');
+}
+
+.docono .x-btn.clear {
+    background: none;
+    border: none;
+}
+
+.docono .x-btn.clear:hover {
+    background: #f08318 !important;
+}
+
+.docono .x-btn.clear:hover .docono_icon_delete {
+    background-image: url('../img/delete.png');
+}
+
+.docono .x-btn.docono_style  {
+    padding: 7px 25px;
+    background: #f08318 !important;
+    border: none;
+}
+
+.docono .x-btn.docono_style:hover {
+    background: #3C3F41 !important;
+}
+
+.docono .x-btn.docono_style .x-btn-inner {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.docono .x-btn.docono_style:hover .x-btn-inner {
+    color: #f08318;
+}
+
+.docono .x-btn:hover .docono_icon_save {
+    background-image: url('../img/rocket_orange.png');
+}
+
+.docono_button{
+    background: none !important;
+}
+
+.docono_button:hover,
+.x-btn-focus {
+    background: none !important;
+}
+
+.docono_button .x-btn-inner {
+    color: #f08318;
+    font-weight: bold;
+}
+
+.docono_button:hover .x-btn-inner {}
+
+.docono_icon_logo {
+    background: url('../img/logo.png') center center no-repeat !important;
+}
+
+.docono .x-tab-default-top.x-tab-active {
+    border-top: 3px solid #f08318;
+}
+
+.docono .x-tab-default-top.x-tab-active .x-tab-inner {
+    color: #606060;
+}
+
+.docono .x-fieldset-header-text {
+    color: #f08318;
+}
+
+.docono .x-form-trigger-wrap-default.x-form-trigger-wrap-focus {
+    border-color: #f08318;
+}

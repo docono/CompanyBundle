@@ -1,0 +1,18 @@
+docono_company:
+    resource: "@CompanyBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+docono_company_admin_update:
+      path:      /admin/company/service/update
+      defaults:  {
+        _controller: CompanyBundle:AdminService:update,
+        _format: json
+        }
+
+docono_company_admin_get:
+      path:      /admin/company/service/get
+      defaults:  {
+        _controller: CompanyBundle:AdminService:get,
+        _format: json
+        }

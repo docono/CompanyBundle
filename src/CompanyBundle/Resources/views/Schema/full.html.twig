@@ -1,0 +1,30 @@
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "{{ schema.type }}",
+    "additionalType": "{{ schema.subtype }}",
+    "name": "{{ company.name }}",
+    "description": "{{ company.description }}",
+    "@id": "",
+    "url": "{{ schema.url }}",
+    "email":"{{ company.email }}",
+    "phone":"{{ company.phone }}",
+    "logo": "{{ schema.logo }}",
+    "image": "{{ schema.image }}",
+    "hasMap": "{{ coordinates.hasmap }}",
+    {% include '@docono.company/Schema/partial.address.html.twig' %}
+    "geo": {
+      "@type": "GeoCoordinates",
+   	  "latitude": "{{ coordinates.lat }}",
+      "longitude": "{{ coordinates.long }}"
+    },
+    {% include '@docono.company/Schema/partial.times.html.twig' %}
+    "sameAs": [
+{% for media in socialmedia %}
+  {% if media != '' %}
+      "{{ media }}",
+  {% endif %}
+{% endfor %}
+    ]
+  }
+  </script>

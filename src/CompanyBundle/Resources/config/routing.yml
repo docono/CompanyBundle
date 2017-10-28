@@ -1,0 +1,3 @@
+docono_company_homepage:
+    path:     /
+    defaults: { _controller: CompanyBundle:Default:index }

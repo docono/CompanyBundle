@@ -1,0 +1,13 @@
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "{{ schema.type }}",
+    {% include '@docono.company/Schema/partial.address.html.twig' %}
+    "description": "{{ company.description }}",
+    "name": "{{ company.name }}",
+    "@id": "",
+    "url": "{{ schema.url }}",
+    "email":"{{ company.email }}",
+    "phone":"{{ company.phone }}",
+}
+</script>

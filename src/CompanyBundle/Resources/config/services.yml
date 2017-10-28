@@ -1,0 +1,8 @@
+services:
+  CompanyBundle\Installer:
+    public: true
+  docono_company.install:
+    class: CompanyBundle\Installer
+  docono.company.template:
+    class: CompanyBundle\Services\Template
+    arguments: ['@templating']
