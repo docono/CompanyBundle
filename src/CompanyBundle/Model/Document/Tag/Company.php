@@ -58,28 +58,10 @@ class Company extends \Pimcore\Model\Document\Tag
      */
     public function getData()
     {
-        // TODO: Implement getData() method.
+        return ['html' => $this->frontend()];
     }
 
-    /**
-     * Receives the data from the editmode and convert this to the internal data in the object eg. image-id to Asset\Image
-     *
-     * @param mixed $data
-     */
-    public function setDataFromEditmode($data)
-    {
-        // TODO: Implement setDataFromEditmode() method.
-    }
+    public function setDataFromEditmode($data) {}
 
-    /**
-     * Receives the data from the resource, an convert to the internal data in the object eg. image-id to Asset\Image
-     *
-     * @param mixed $data
-     *
-     * @return string
-     */
-    public function setDataFromResource($data)
-    {
-        // TODO: Implement setDataFromResource() method.
-    }
+    public function setDataFromResource($data) {}
 }

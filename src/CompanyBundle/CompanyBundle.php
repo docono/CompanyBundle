@@ -41,10 +41,4 @@ class CompanyBundle extends AbstractPimcoreBundle
     {
         return 'docono/company-bundle';
     }
-
-
-    public function getVersion()
-    {
-        return 'v1.0.0';
-    }
 }

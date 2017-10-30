@@ -9,6 +9,9 @@ pimcore.document.tags.company = Class.create(pimcore.document.tag, {
         this.options = this.parseOptions(options);
         this.data = data;
 
+        this.element = Ext.get(id);
+        this.element.update(data.html);
+
         this.setupWrapper();
     },
 
