@@ -15,6 +15,12 @@ The Company Bundle provides to the backend user a simplified management panel to
 
 The Bundle includes also HTML and Schema.org templates which easily be extended and implemented with a Pimcore Document Tag.
 
+included translations
+- German (v1.0.0)
+- English (v1.0.0)
+- Ukrainian (v1.0.1) thanks to Olya Batyr
+- Russian (v1.0.1) thanks to Olya Batyr
+
 <a name="getting-started"/>
 
 ##Getting Started
