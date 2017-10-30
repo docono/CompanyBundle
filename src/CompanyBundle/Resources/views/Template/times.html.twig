@@ -2,7 +2,7 @@
 {% for day, data in times %}
     {% if (data.closed is not defined or data.closed == false) and (data.open is defined and data.close is defined)%}
     <tr class="{{ day }}">
-        <td>{{ day|trans }}</td>
+        <td>{{ day | capitalize | trans }}</td>
         <td>{{ data.open }} - {{ data.close }}</td>
     </tr>
     {% endif %}

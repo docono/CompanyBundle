@@ -5,5 +5,5 @@
     <span class="town">{{ company.postalcode }}</span>
     <span class="country">{{ company.country|trans }}</span>
     <span class="phone">{{ company.phone }}</span>
-    <span class="email"><a href="mailto:{{ company.email }}">{{ company.email }}</a></span>
+    <a href="mailto:{{ company.email }}" class="email">{{ company.email }}</a>
 </p>
