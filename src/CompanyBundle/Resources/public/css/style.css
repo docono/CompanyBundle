@@ -118,3 +118,17 @@
 .docono .x-form-trigger-wrap-default.x-form-trigger-wrap-focus {
     border-color: #f08318;
 }
+
+.docono fieldset.pm-time {
+    padding-bottom: 10px !important;
+    border: none !important;
+}
+
+.docono td.day-limiter {
+    padding-top: 10px;
+    border-top: 1px solid #f08318;
+}
+
+.docono td.day-limiter label.day {
+    color: #f08318;
+}

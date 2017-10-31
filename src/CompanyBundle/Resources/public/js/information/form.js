@@ -73,128 +73,9 @@ pimcore.plugin.docono_company.information.form = Class.create({
                         }
                     ]
                 }]
-            }, {
-                title: t('docono_company.opening_times'),
-                name: 'times',
-                layout: {
-                    type: 'table',
-                    columns: 2
-                },
-                defaults: {
-                    xtype: 'timefield',
-                    format: 'H:i',
-                    increment: '30',
-                    margin: '5 0 10 0'
-                },
-                items: [
-                    {
-                        xtype: 'label',
-                        text: t('Monday'),
-                    }, {
-                        xtype: 'checkboxfield',
-                        name: 'monday[closed]',
-                        boxLabel: t('docono_company.opening_times.closed'),
-                        margin: 0
-                    },{
-                        name: 'monday[open]',
-                        margin: '5 20 10 0',
-                        emptyText: t('docono_company.opening_times.opening'),
-                    }, {
-                        name: 'monday[close]',
-                        emptyText: t('docono_company.opening_times.closing')
-                    }, {
-                        xtype: 'label',
-                        text: t('Tuesday')
-                    },  {
-                        xtype: 'checkboxfield',
-                        name: 'tuesday[closed]',
-                        boxLabel: t('docono_company.opening_times.closed'),
-                        margin: 0
-                    },{
-                        name: 'tuesday[open]',
-                        margin: '5 20 10 0',
-                        emptyText: t('docono_company.opening_times.opening')
-                    }, {
-                        name: 'tuesday[close]',
-                        emptyText: t('docono_company.opening_times.closing')
-                    }, {
-                        xtype: 'label',
-                        text: t('Wednesday')
-                    },  {
-                        xtype: 'checkboxfield',
-                        name: 'wednesday[closed]',
-                        boxLabel: t('docono_company.opening_times.closed'),
-                        margin: 0
-                    },{
-                        name: 'wednesday[open]',
-                        margin: '5 20 10 0',
-                        emptyText: t('docono_company.opening_times.opening')
-                    }, {
-                        name: 'wednesday[close]',
-                        emptyText: t('docono_company.opening_times.closing')
-                    }, {
-                        xtype: 'label',
-                        text: t('Thursday')
-                    },  {
-                        xtype: 'checkboxfield',
-                        name: 'thursday[closed]',
-                        boxLabel: t('docono_company.opening_times.closed'),
-                        margin: 0
-                    },{
-                        name: 'thursday[open]',
-                        margin: '4 20 10 0',
-                        emptyText: t('docono_company.opening_times.opening')
-                    }, {
-                        name: 'thursday[close]',
-                        emptyText: t('docono_company.opening_times.closing')
-                    }, {
-                        xtype: 'label',
-                        text: t('Friday')
-                    },  {
-                        xtype: 'checkboxfield',
-                        name: 'friday[closed]',
-                        boxLabel: t('docono_company.opening_times.closed'),
-                        margin: 0
-                    },{
-                        name: 'friday[open]',
-                        margin: '5 20 10 0',
-                        emptyText: t('docono_company.opening_times.opening')
-                    }, {
-                        name: 'friday[close]',
-                        emptyText: t('docono_company.opening_times.closing')
-                    }, {
-                        xtype: 'label',
-                        text: t('Saturday')
-                    },  {
-                        xtype: 'checkboxfield',
-                        name: 'saturday[closed]',
-                        boxLabel: t('docono_company.opening_times.closed'),
-                        margin: 0
-                    },{
-                        name: 'saturday[open]',
-                        margin: '5 20 10 0',
-                        emptyText: t('docono_company.opening_times.opening')
-                    }, {
-                        name: 'saturday[close]',
-                        emptyText: t('docono_company.opening_times.closing')
-                    }, {
-                        xtype: 'label',
-                        text: t('Sunday')
-                    },  {
-                        xtype: 'checkboxfield',
-                        name: 'sunday[closed]',
-                        boxLabel: t('docono_company.opening_times.closed'),
-                        margin: 0
-                    },{
-                        name: 'sunday[open]',
-                        margin: '5 20 10 0',
-                        emptyText: t('docono_company.opening_times.opening')
-                    }, {
-                        name: 'sunday[close]',
-                        emptyText: t('docono_company.opening_times.closing')
-                    }
-                ]
-            }, {
+            },
+                this.getTimesPanel(),
+            {
                 title: t('docono_company.social_media'),
                 name: 'socialmedia',
                 layout: {
@@ -246,5 +127,102 @@ pimcore.plugin.docono_company.information.form = Class.create({
         });
 
         return this.formPanel;
+    },
+
+    getTimesPanel: function() {
+        this.timesFieldset = Ext.create('Ext.form.FieldSet', {
+            title: t('docono_company.opening_times'),
+            name: 'times',
+            layout: {
+                type: 'table',
+                columns: 2
+            },
+            defaults: {
+                xtype: 'timefield',
+                format: 'H:i',
+                increment: '30',
+                margin: '5 0 10 0'
+            },
+            items: [
+                {
+                    xtype: 'checkbox',
+                    colspan: 2,
+                    name: 'lunchbreak',
+                    boxLabel: t('docono_company.opening_times.lunchbreak'),
+                    margin: '0 0 10',
+                    listeners: {
+                        change: function(checkbox, newValue, oldValue, eOpts) {
+                            var fieldsets = checkbox.up('fieldset').query('fieldset');
+                            Ext.each(fieldsets, function(element) {
+                                element.toggle();
+                            });
+                        }
+                    }
+                }
+            ]
+        });
+
+        this.addDayFields('monday');
+        this.addDayFields('tuesday');
+        this.addDayFields('wednesday');
+        this.addDayFields('thursday');
+        this.addDayFields('friday');
+        this.addDayFields('saturday');
+        this.addDayFields('sunday');
+
+        return this.timesFieldset;
+    },
+
+    addDayFields: function(day) {
+        this.timesFieldset.add([
+            {
+                xtype: 'label',
+                text: t(day.charAt(0).toUpperCase() + day.slice(1)),
+                cls: 'day',
+                cellCls: 'day-limiter'
+            }, {
+                xtype: 'checkboxfield',
+                name: day + '[closed]',
+                boxLabel: t('docono_company.opening_times.closed'),
+                cellCls: 'day-limiter',
+                margin: 0
+            },{
+                name: day + '[open]',
+                margin: '5 20 10 0',
+                emptyText: t('docono_company.opening_times.opening'),
+            }, {
+                name: day + '[close]',
+                emptyText: t('docono_company.opening_times.closing')
+            }, {
+                xtype: 'fieldset',
+                name: 'pm_times',
+                border: false,
+                cls: 'pm-time',
+                margin: 0,
+                padding: 0,
+                colspan: 2,
+                layout: {
+                    type: 'table',
+                    columns: 2
+                },
+                collapsed: true,
+                defaults: {
+                    xtype: 'timefield',
+                    format: 'H:i',
+                    increment: '30',
+                    margin: '0 0 10'
+                },
+                items: [
+                    {
+                        name: day + '[open_pm]',
+                        margin: '0 20 10 0',
+                        emptyText: t('docono_company.opening_times.opening'),
+                    }, {
+                        name: day + '[close_pm]',
+                        emptyText: t('docono_company.opening_times.closing')
+                    }
+                ]
+            }
+        ]);
     }
 });

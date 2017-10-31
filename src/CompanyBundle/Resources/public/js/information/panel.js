@@ -56,9 +56,7 @@ pimcore.plugin.docono_company.information.panel = Class.create({
                                         pimcore.helpers.showNotification(t("success"), t("docono_company.message.successful_saved"), "success");
                                     },
                                     failure: function () {
-                                        //hide loading bar
                                         pimcore.helpers.loadingHide();
-                                        //show error message
                                         Ext.MessageBox.show({
                                             title: 'Error',
                                             msg: t('docono_company,nessage.error.updating_data_failed'),
@@ -92,16 +90,20 @@ pimcore.plugin.docono_company.information.panel = Class.create({
                             var informationForm = me.informationFormPanel.getForm();
 
                             Ext.Object.each(data.data, function(section, data) {
+                                var fieldset = me.panel.query('[name=' + section + ']')[0];
 
                                 if(section != 'times') {
-                                    var fieldset = me.panel.query('[name=' + section + ']')[0];
-
                                     Ext.Object.each(data, function (key, value) {
                                         if((field = fieldset.query('[name*=' + key + ']')[0]) !== undefined) {
                                             field.setValue(value);
                                         }
                                     });
                                 } else {
+                                    if(data.lunchbreak !== undefined) {
+                                        informationForm.findField('lunchbreak').setValue(data.lunchbreak);
+                                        delete data.lunchbreak;
+                                    }
+
                                     Ext.Object.each(data, function(day, daydata) {
                                         Ext.Object.each(daydata, function(key, value) {
                                             informationForm.findField(day + '[' + key + ']').setValue(value);

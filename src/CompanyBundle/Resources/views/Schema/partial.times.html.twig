@@ -2,11 +2,19 @@
 {% for day, data in times %}
     {% if (data.closed is not defined or data.closed == false) and (data.open is defined and data.close is defined)%}
         {
-        "@type": "OpeningHoursSpecification",
-        "closes":  "{{ data.close }}",
-        "dayOfWeek": "http://schema.org/{{ day|capitalize }}",
-        "opens":  "{{ data.open }}"
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "http://schema.org/{{ day|capitalize }}",
+            "opens":  "{{ data.open }}"
+            "closes":  "{{ data.close }}",
         },
+    {% if(times.lunchbreak and (data.open_pm is defined and data.close_pm is defined)) %}
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "http://schema.org/{{ day|capitalize }}",
+            "opens":  "{{ data.open_pm }}"
+            "closes":  "{{ data.close_pm }}",
+        },
+    {% endif %}
     {% endif %}
 {% endfor %}
 ],

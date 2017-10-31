@@ -40,6 +40,10 @@ class AdminServiceController extends AdminController
             //init day array
             $days = array('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday');
 
+            //add lunchbreak
+            $data['times']['lunchbreak'] = (bool)(isset($data['lunchbreak']) && ($data['lunchbreak'] == 'on'));
+            unset($data['lunchbreak']);
+
             foreach($days as $day) {
                 $data[$day]['closed'] = (bool)(isset($data[$day]['closed']) && ($data[$day]['closed'] == 'on'));
                 //add day data to times array
