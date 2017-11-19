@@ -12,7 +12,7 @@ class Template {
 
     private $templating = null;
 
-    private $standardTemplates = ['full', 'address', 'times'];
+    private $standardTemplates = ['full', 'address', 'times', 'socialmedia'];
 
     /**
      * Template constructor
@@ -96,6 +96,15 @@ class Template {
      */
     public function times(String $type=self::combined) : String {
         return $this->templating->render('@docono.company/'.$type.'/times.html.twig', Config::getData());
+    }
+
+    /**
+     * render social media html template
+     *
+     * @return string
+     */
+    public function socialmedia() : String {
+        return $this->templating->render('@docono.company/'.self::html.'/socialmedia.html.twig', Config::getData());
     }
 
     /**

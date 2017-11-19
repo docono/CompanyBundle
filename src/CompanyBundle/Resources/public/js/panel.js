@@ -26,7 +26,7 @@ pimcore.plugin.docono_company.panel = Class.create({
                             text: 'powered by'
                         }, {
                             xtype: 'button',
-                            text: 'DOCONO | Inter-Web Freelancers',
+                            text: 'DOCONO | digitale Problemlöser',
                             border: false,
                             cls: 'docono_button',
                             iconCls: 'docono_icon_logo',
