@@ -15,6 +15,7 @@
 "docono_company.company.region"; "Region"; "region"; "регіон"; "регион"
 "docono_company.company.country"; "Land"; "country"; "країна"; "страна"
 "docono_company.company.telephone"; "Telefon"; "telephone"; "телефон"; "телефон"
+"docono_company.company.fax"; "Fax"; "fax"; "телефакс"; "телефакс"
 "docono_company.company.email"; "E-Mail"; "e-mail"; "електронна пошта"; "електронная почта"
 "docono_company.company.description"; "Beschreibung"; "description"; "опис"; "описане"
 "docono_company.opening_times"; "Öffnungszeiten"; "opening times"; "графік роботи"; "график работы"

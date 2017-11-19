@@ -60,6 +60,9 @@ pimcore.plugin.docono_company.information.form = Class.create({
                             name: 'company[phone]',
                             fieldLabel: t('docono_company.company.telephone')
                         }, {
+                            name: 'company[fax]',
+                            fieldLabel: t('docono_company.company.fax')
+                        }, {
                             vtype: 'email',
                             name: 'company[email]',
                             fieldLabel: t('docono_company.company.email'),
