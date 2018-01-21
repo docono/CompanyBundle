@@ -1,4 +1,6 @@
 # DOCONO.io Company Bundle
+![interface](https://docono.io/companyBundle/interface.jpg)
+
 * [Description](#getting-started)
 * [Configuration File](#configuration-file)
 * [Templates](#templates)
