@@ -61,12 +61,12 @@ abstract class Config {
         return self::getData()['company'];
     }
 
-    /**
-     * @return array
-     */
-    public static function getCoordinates() : array {
-        return self::getData()['coordinates'];
-    }
+	/**
+	 * @return array
+	 */
+	public static function getSocialmedia() : array {
+		return self::getData()['socialmedia'];
+	}
 
     /**
      * @return array
@@ -75,10 +75,32 @@ abstract class Config {
         return self::getData()['times'];
     }
 
-    /**
-     * @return array
-     */
-    public static function getSocialmedia() : array {
-        return self::getData()['socialmedia'];
+	/**
+	 * @return array
+	 */
+	public static function getholidays() : array {
+		return self::getData()['holiday'];
+	}
+
+	/**
+	 * @param string $langauge
+	 * @return mixed
+	 */
+    public static function getSEO(string $langauge='en') {
+	    return self::getData()['seo'][$langauge];
     }
+
+	/**
+	 * @return array
+	 */
+	public static function getSchema() : array {
+		return self::getData()['schema'];
+	}
+
+	/**
+	 * @return array
+	 */
+	public static function getLocation() : array {
+		return self::getData()['location'];
+	}
 }

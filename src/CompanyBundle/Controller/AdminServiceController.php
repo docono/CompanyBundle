@@ -35,22 +35,10 @@ class AdminServiceController extends AdminController
             //remove site element
             unset($data['site']);
 
-            //add times array
-            $data['times'] = [];
-            //init day array
-            $days = array('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday');
+            $data = $this->gnerateArrayTree($data);
 
-            //add lunchbreak
-            $data['times']['lunchbreak'] = (bool)(isset($data['lunchbreak']) && ($data['lunchbreak'] == 'on'));
-            unset($data['lunchbreak']);
-
-            foreach($days as $day) {
-                $data[$day]['closed'] = (bool)(isset($data[$day]['closed']) && ($data[$day]['closed'] == 'on'));
-                //add day data to times array
-                $data['times'][$day] = $data[$day];
-                //remove day data
-                unset($data[$day]);
-            }
+            //ensure lunchbreak is a bool
+	        $data['times']['lunchbreak'] = (bool)(isset($data['times']['lunchbreak']) && ($data['times']['lunchbreak'] == 'on'));
 
             //generate Yaml
             $yaml = Yaml::dump($data);
@@ -62,5 +50,23 @@ class AdminServiceController extends AdminController
         }
 
         return new JsonResponse(['success'=> true]);
+    }
+
+    private function gnerateArrayTree(array $array) {
+    	$data = [];
+
+	    foreach($array as $key => $element) {
+		    if(preg_match('@(.*)\_(.*)@i', $key, $subKeys)) {
+		        if(is_numeric($subKeys[2])) {
+			        $data[$subKeys[1]][] = $element;
+		        } else {
+				    $data[$subKeys[1]][$subKeys[2]] = $element;
+			    }
+		    } else {
+		    	$data[$key] = $element;
+		    }
+	    }
+
+	   return $data;
     }
 }

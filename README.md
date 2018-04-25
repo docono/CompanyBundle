@@ -1,4 +1,6 @@
 # DOCONO.io Company Bundle
+![interface](https://docono.io/companyBundle/interface_v1_2.jpg)
+
 * [Description](#getting-started)
 * [Configuration File](#configuration-file)
 * [Templates](#templates)
@@ -21,11 +23,17 @@ included translations
 - Ukrainian (v1.0.1) thanks to Olya Batyr
 - Russian (v1.0.1) thanks to Olya Batyr
 
+#### new in v1.2
+- new tab organisation
+- add holidays to the opening hours
+- edit site description & keywords based on the site language
+- new template handling
+
 <a name="getting-started"/>
 
 ##Getting Started
 
-* download bundle with Composer ```"docono/company-bundle": "^1.0"```
+* download bundle with Composer ```"docono/company-bundle": "^1.2"```
 * install the Bundle in the Extension Management Tool in Pimcore
 * make sure the cache is flushed and Pimcore reloaded
 * open the "Company Information" panel and fill in the company details
@@ -60,10 +68,10 @@ company:
     region: OW
     country: CH
     phone: '+41000000'
+    fax: '+41000000'
     email: hello@docono.io
-    description: 'DOCONO | Inter-Web Freelancers'
 socialmedia:
-    linkedin: ''
+    linkedin: 'https://www.linkedin.com/company/docono/'
     xing: ''
     facebook: 'http://www.facebook.com/docono.io'
     googleplus: ''
@@ -72,24 +80,31 @@ socialmedia:
     pinterest: ''
     youtube: ''
     vimeo: ''
-schema:
-    type: ''
-    subtype: ''
-    url: 'https://docono.io/'
-    logo: /var/assets/logo.png
-    image: /var/assets/tester/dee1.jpg
-coordinates:
-    lat: '47.05'
-    long: '8.30'
-    hasmap: 'https://goo.gl/maps/CPzgDp35bS52'
 times:
-    monday: { open: '08:00', close: '15:00', closed: false }
-    tuesday: { open: '09:00', close: '15:00', closed: false }
-    wednesday: { open: '09:00', close: '15:00', closed: false }
-    thursday: { open: '09:00', close: '15:00', closed: false }
-    friday: { open: '09:00', close: '15:00', closed: false }
-    saturday: { closed: true }
-    sunday: { closed: true }
+    lunchbreak: true
+    monday: { open: '09:00', close: '10:00', open_pm: '13:00', close_pm: '16:00' }
+    tuesday: { open: '09:00', close: '10:00', open_pm: '13:00', close_pm: '16:00' }
+    wednesday: { open: '09:00', close: '10:00', open_pm: '13:00', close_pm: '16:00' }
+    thursday: { open: '09:00', close: '10:00', open_pm: '13:00', close_pm: '16:00' }
+    friday: { closed: 'on' }
+    saturday: { closed: 'on' }
+    sunday: { closed: 'on' }
+holiday:
+    - { name: 'Easter weekend', start: 30.03.2018, end: 02.04.2018 }
+    - { name: 'Christmas & New Year', start: 21.12.2018, end: 06.01.2019 }
+seo:
+    en: { description: 'site description', keywords: 'keywords, metakeywords' }
+    de: { description: 'Seitenbeschreibung', keywords: 'keywords, metakeywords' }
+schema:
+    type: LocalBusiness
+    subtype: ''
+    url: 'https://docono.io'
+    logo: /var/assets/logo/DOCONO-logo.jpg
+    image: /var/assets/logo/DOCONO-logo.jpg
+location:
+    lat: '47.050168'
+    long: '8.309307'
+    link: 'https://goo.gl/maps/CPzgDp35bS52'
 ```
 
 <a name="templates"/>
@@ -111,19 +126,22 @@ Each typ has its own folder for the templates, which are defined in the Template
 If you do not like the standard templates simply override it with a template in the app template dir `app/Resources/views'.
 
 #### example
-To overriding the address HTML template (`address.html.twig`) create following file:
-`app/Resources/views/Template/address.html.twig`
+To override the address HTML template (`address_html.html.twig`) create following file:
+`app/Resources/views/docono_company/address_html.html.twig`
+
+To override the address Schema.org template (`address_schema.html.twig`) create following file:
+`app/Resources/views/docono_company/address_schema.html.twig`
 
 ### Custom Template
-To use your own template simply create your template in one of the defined type folders.
+To use your own template simply create your template in a folder the views dir.
 
 #### example
-To build your own Schema.org template creat following file:
-`app/Resources/views/Schema/mySchema.html.twig`
+To build your own Stemplate creat following file:
+`app/Resources/views/myTemplates/demo.html.twig`
 
 Implementing it into your view:
 ```php
-<?= $this->company('demoSchema', ['tpl'=>'mySchema.html.twig', 'type'=>\CompanyBundle\Services\Template::schema]); ?>
+<?= $this->company('demoTemplate', ['tpl'=>'myTemplates/demo.html.twig']); ?>
 ```
 
 
@@ -132,28 +150,30 @@ Implementing it into your view:
 ## Rendering Templates
 
 Template options:
-* address   [only address]
-* times     [only opening times]
-* full      [all information]
-* template  [using your customised template]
+* address         [only address]
+* times           [only opening times]
+* socialmedia     [only social media] (fontawesome ready)
+* full            [all information]
+* template        [using your customised template]
 
 Type options:
-* Template  [only HTML]
-* Schema    [only Schema.org JSON-LD]
-* Combined  [HTML and JSON-LD]
+* html  [only HTML]
+* schema    [only Schema.org JSON-LD]
+* combined  [HTML and JSON-LD]
 
 ### Document Tag
 #### configuration
 
-| Name               | Type    | Configuration                                                                                                           |
-|--------------------|---------|-------------------------------------------------------------------------------------------------------------------------|
-| `tpl`              | string  | `address`, `times`, `full` or tpl path                                                                                        |
-| `type`             | string  | use service const for type configuration (html, schema, combined) e.g.: `\CompanyBundle\Services\Template::html` |
-
+| Name               | Type    | Configuration                                                                                               |
+|--------------------|---------|-------------------------------------------------------------------------------------------------------------|
+| `tpl`              | string  | standard template name or path - default: `full`                                                            |
+| `type`             | string  | only for standard templats needed, e.g.: `\CompanyBundle\Services\Template::html` - default: `combined`     |
+ 
 #### basic usage
 ```php
 <?= $this->company('demoInformations'); ?>
 ```
+
 
 #### advanced usage
 ```php
@@ -165,13 +185,14 @@ The Template Render Service is registered as `docono.company.template`
 
 #### Methods
 
-| Name                                                   | Return   | Description                        |
-|--------------------------------------------------------|----------|------------------------------------|
-| `template(String $tpl, String $type=self::combined)`   | string   | render custom template             |
-| `address(String $type=self::combined)`                 | string   | render standard address template   |
-| `times(String $type=self::combined)`                   | string   | render standard times template     |
-| `full(String $type=self::combined)`                    | string   | render standard full template      |
-| `__toString()`                                         | string   | full() alias                       |
+| Name                                                   | Return   | Description                                |
+|--------------------------------------------------------|----------|--------------------------------------------|
+| `template(String $tpl)`                                | string   | render custom template                     |
+| `address(String $type=self::combined)`                 | string   | render standard address template           |
+| `times(String $type=self::combined)`                   | string   | render standard times template             |
+| `socialmedia()`                                        | string   | render standard social media html template |
+| `full(String $type=self::combined)`                    | string   | render standard full template              |
+| `__toString()`                                         | string   | full() alias                               |
 
 
 #### basic usage
@@ -182,7 +203,7 @@ The Template Render Service is registered as `docono.company.template`
 #### advanced usage
 ```php
 <?= $this->container->get('docono.company.template')->address(\CompanyBundle\Services\Template::combined); ?>
-<?= $this->container->get('docono.company.template')->template('Template/myAddress.html.twig', \CompanyBundle\Services\Template::schema); ?>
+<?= $this->container->get('docono.company.template')->template('myTemplates/demo.html.twig'); ?>
 ```
 
 <a name="configuration-helper"/>
@@ -193,15 +214,20 @@ If you want to access any of the company information data, simply use the STATIC
 `CompanyBundle\Helper\Config`
 
 
-| Name                           | Return  | Description                            |
-|--------------------------------|---------|----------------------------------------|
-| `getFile()`                    | string  | get YAML config file for current site  |
-| `getFileForSite(String $site)` | string  | get YAML config file for given site id |
-| `getData(String $site=null)`   | array   | array of all data                      |
-| `getCompany()`                 | array   | array of the 'company' namespace       |
-| `getCoordinates()`             | array   | array of the 'coordinates' namespace   |
-| `getOpeningtimes()`            | array   | array of the 'times' namespace         |
-| `getSocialmedia()`             | array   | array of the 'socialmedia' namespace   |
+| Name                            | Return  | Description                            |
+|---------------------------------|---------|----------------------------------------|
+| `getFile()`                     | string  | get YAML config file for current site  |
+| `getFileForSite(String $site)`  | string  | get YAML config file for given site id |
+| `getData(String $site=null)`    | array   | array of all data                      |
+| `getCompany()`                  | array   | array of the 'company' namespace       |
+| `getSocialmedia()`              | array   | array of the 'socialmedia' namespace   |
+| `getOpeningtimes()`             | array   | array of the 'times' namespace         |
+| `getHolidays()`                 | array   | array of the 'holiday' namespace       |
+| `getSEO(string $language='en')` | array   | array of the 'seo' namespace           |
+| `getSchema()`                   | array   | array of the 'schema' namespace        |
+| `getLocation()`                 | array   | array of the 'location' namespace      |
+
+
 
 ```php
 <?= CompanyBundle\Helper\Config::getCompany()['name']; ?>

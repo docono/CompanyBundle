@@ -6,9 +6,9 @@ namespace CompanyBundle\Services;
 use CompanyBundle\Helper\Config;
 
 class Template {
-    const html = 'Template';
-    const schema = 'Schema';
-    const combined = 'Combined';
+    const html = 'html';
+    const schema = 'schema';
+    const combined = 'combined';
 
     private $templating = null;
 
@@ -52,30 +52,30 @@ class Template {
         return array_flip($reflection->getConstants());
     }
 
-    /**
-     * check if given type is valid
-     *
-     * @param String $type
-     * @return bool
-     */
-    public function validType(String $type) : bool {
-        return (bool)(self::combined==$type) || (self::html==$type) || (self::schema==$type);
-    }
+	/**
+	 * check if given type is valid
+	 *
+	 * @param String $type
+	 * @return bool
+	 */
+	public function validType(String $type) : bool {
+		return (bool)(self::combined==$type) || (self::html==$type) || (self::schema==$type);
+	}
 
-    /**
+
+	/**
      * render user specific template
      *
      * @param String $tpl
-     * @param String $type
      * @return String
      * @throws \Exception
      */
-    public function template(String $tpl, String $type=self::combined) : String {
+    public function template(String $tpl) : String {
         //ensure template exists
-        if(!$this->templating->exists('@docono.company/'.$type.'/'.$tpl))
-            throw new \Exception('unknown template "' . $tpl . '" - predefined templates: [' . implode(', ', $this->getStandardTemplates()) . ']');
+        if(!$this->templating->exists('@docono.company/'.$tpl))
+            throw new \Exception('could not find template "' . $tpl . '""');
 
-        return $this->templating->render('@docono.company/'.$type.'/'.$tpl, Config::getData());
+        return $this->templating->render('@docono.company/' . $tpl, Config::getData());
     }
 
     /**
@@ -85,7 +85,7 @@ class Template {
      * @return String
      */
     public function address(String $type=self::combined) : String {
-        return $this->templating->render('@docono.company/'.$type.'/address.html.twig', Config::getData());
+    	return $this->template('docono_company/address_' . $type . '.html.twig');
     }
 
     /**
@@ -95,7 +95,7 @@ class Template {
      * @return String
      */
     public function times(String $type=self::combined) : String {
-        return $this->templating->render('@docono.company/'.$type.'/times.html.twig', Config::getData());
+	    return $this->template('docono_company/times_' . $type . '.html.twig');
     }
 
     /**
@@ -104,7 +104,7 @@ class Template {
      * @return string
      */
     public function socialmedia() : String {
-        return $this->templating->render('@docono.company/'.self::html.'/socialmedia.html.twig', Config::getData());
+	    return $this->template('docono_company/socialmedia.html.twig');
     }
 
     /**
@@ -114,7 +114,7 @@ class Template {
      * @return string
      */
     public function full(String $type=self::combined) : string {
-        return $this->templating->render('@docono.company/'.$type.'/full.html.twig', Config::getData());
+	    return $this->template('docono_company/full_' . $type . '.html.twig');
     }
 
     /**

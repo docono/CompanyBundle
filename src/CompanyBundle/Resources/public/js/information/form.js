@@ -9,80 +9,71 @@ pimcore.plugin.docono_company.information.form = Class.create({
         var me = this;
 
         this.formPanel = Ext.create('Ext.form.Panel', {
+            id: 'information_form_' + this.id,
             region: 'center',
             layout: 'hbox',
+            layout: 'hbox',
             title: t('docono_company.information'),
-            id: 'information_form_' + this.id,
             iconCls: 'docono_icon_info',
             autoScroll: true,
             defaults: {
                 xtype: 'fieldset',
-                margin: '20 0 20 20'
+                flex: 1,
+                margin: '20 20 20 0'
             },
             items: [{
-                xtype: 'panel',
-                layout: 'vbox',
+                title: t('docono_company.company'),
+                name: 'company',
                 defaults: {
-                    xtype: 'fieldset'
+                    xtype: 'textfield',
+                    anchor:	"100%"
                 },
-                items: [{
-                    title: t('docono_company.company'),
-                    name: 'company',
-                    defaults: {
-                        xtype: 'textfield'
-                    },
-                    items: [
-                        {
-                            name: 'company[name]',
-                            fieldLabel: t('docono_company.company.name')
-                        }, {
-                            name: 'company[address]',
-                            fieldLabel: t('docono_company.company.address')
-                        }, {
-                            name: 'company[town]',
-                            fieldLabel: t('docono_company.company.town')
-                        }, {
-                            name: 'company[postalcode]',
-                            fieldLabel: t('docono_company.company.postal_code')
-                        },  {
-                            name: 'company[region]',
-                            fieldLabel: t("docono_company.company.region"),
-                            emptyText: 'OW'
-                        },{
-                            xtype: 'combo',
-                            name: 'company[country]',
-                            store: new pimcore.plugin.docono_company.store.country().getStore(),
-                            fieldLabel: t("docono_company.company.country"),
-                            queryMode: 'local',
-                            displayField: 'name',
-                            valueField: 'code',
-                        }, {
-                            name: 'company[phone]',
-                            fieldLabel: t('docono_company.company.telephone')
-                        }, {
-                            name: 'company[fax]',
-                            fieldLabel: t('docono_company.company.fax')
-                        }, {
-                            vtype: 'email',
-                            name: 'company[email]',
-                            fieldLabel: t('docono_company.company.email'),
-                            emptyText: 'hello@docono.io'
-                        }, {
-                            xtype: 'textarea',
-                            name: 'company[description]',
-                            labelAlign: 'top',
-                            width: 275,
-                            fieldLabel: t("docono_company.company.description"),
-                        }
-                    ]
-                }]
+                margin: '20 20 0 20',
+                items: [
+                    {
+                        name: 'company[name]',
+                        fieldLabel: t('docono_company.company.name')
+                    }, {
+                        name: 'company[address]',
+                        fieldLabel: t('docono_company.company.address')
+                    }, {
+                        name: 'company[town]',
+                        fieldLabel: t('docono_company.company.town')
+                    }, {
+                        name: 'company[postalcode]',
+                        fieldLabel: t('docono_company.company.postal_code')
+                    },  {
+                        name: 'company[region]',
+                        fieldLabel: t("docono_company.company.region"),
+                        emptyText: 'OW'
+                    },{
+                        xtype: 'combo',
+                        name: 'company[country]',
+                        store: new pimcore.plugin.docono_company.store.country().getStore(),
+                        fieldLabel: t("docono_company.company.country"),
+                        queryMode: 'local',
+                        displayField: 'name',
+                        valueField: 'code',
+                    }, {
+                        name: 'company[phone]',
+                        fieldLabel: t('docono_company.company.telephone')
+                    }, {
+                        name: 'company[fax]',
+                        fieldLabel: t('docono_company.company.fax')
+                    }, {
+                        vtype: 'email',
+                        name: 'company[email]',
+                        fieldLabel: t('docono_company.company.email'),
+                        emptyText: 'hello@docono.io'
+                    }
+                ]
             }, {
                 title: t('docono_company.social_media'),
                 name: 'socialmedia',
-                layout: {
-                    type: 'vbox'
+                defaults: {
+                    xtype: 'textfield',
+                    anchor:	"100%"
                 },
-                defaultType: 'textfield',
                 items: [
                     {
                         name: 'socialmedia[linkedin]',

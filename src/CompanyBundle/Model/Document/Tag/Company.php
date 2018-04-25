@@ -21,9 +21,8 @@ class Company extends \Pimcore\Model\Document\Tag
         $tpl = $options['tpl'];
         $type = $options['type'];
 
-        //set full as standard type
         if(!$type)
-            $type = Template::combined;
+        	$type = Template::html;
 
         //ensure type is valid
         if(!$templateService->validType($type))
@@ -39,7 +38,7 @@ class Company extends \Pimcore\Model\Document\Tag
             return call_user_func(array($templateService, $tpl), $type);
 
         //render user template
-        return $templateService->template($tpl, $type);
+        return $templateService->template($tpl);
     }
 
     /**

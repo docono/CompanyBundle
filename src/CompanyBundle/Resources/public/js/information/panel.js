@@ -10,11 +10,9 @@ pimcore.plugin.docono_company.information.panel = Class.create({
         var me = this;
 
         if (!this.panel) {
-            this.informationFormPanel = new pimcore.plugin.docono_company.information.form(this.id).getPanel();
-            this.advancedFormPanel = new pimcore.plugin.docono_company.advanced.form(this.id).getPanel();
-            this.timesFormPanel = new pimcore.plugin.docono_company.times.form(this.id).getPanel();
-            this.mapFormPanel = new pimcore.plugin.docono_company.map.form(this.id).getPanel();
-            this.seoFormPanel = new pimcore.plugin.docono_company.seo.form(this.id).getPanel();
+            this.informationForm = new pimcore.plugin.docono_company.information.form(this.id);
+            this.timesForm = new pimcore.plugin.docono_company.times.form(this.id);
+            this.seoForm = new pimcore.plugin.docono_company.seo.form(this.id);
 
             this.panel = Ext.create('Ext.tab.Panel', {
                 id: "docono_company_imformation_panel_" + this.id,
@@ -25,11 +23,9 @@ pimcore.plugin.docono_company.information.panel = Class.create({
                 closable: false,
 
                 items: [
-                    this.informationFormPanel,
-                    this.advancedFormPanel,
-                    this.timesFormPanel,
-                    this.mapFormPanel,
-                    this.seoFormPanel,
+                    this.informationForm.getPanel(),
+                    this.timesForm.getPanel(),
+                    this.seoForm.getPanel()
                 ],
 
                 dockedItems: [{
@@ -46,21 +42,18 @@ pimcore.plugin.docono_company.information.panel = Class.create({
                             cls: 'docono_style',
                             text: t('docono_company.save'),
                             handler: function () {
-
                                 var params = Ext.Object.merge({
                                         'site': me.id
                                     },
                                     Ext.getCmp('information_form_' + me.id).getValues(),
-                                    Ext.getCmp('advanced_form_' + me.id).getValues(),
                                     Ext.getCmp('times_form_' + me.id).getValues(),
-                                    Ext.getCmp('map_form_' + me.id).getValues(),
                                     Ext.getCmp('seo_form_' + me.id).getValues()
                                 );
 
                                 Ext.Ajax.request({
                                     url: '/admin/company/service/update',
                                     params: params,
-                                    // method: 'POST',
+                                    method: 'GET',
                                     success: function (xhr) {
                                         pimcore.helpers.loadingHide();
                                         pimcore.helpers.showNotification(t("success"), t("docono_company.message.successful_saved"), "success");
@@ -97,37 +90,28 @@ pimcore.plugin.docono_company.information.panel = Class.create({
                         try {
                             var data = Ext.decode(xhr.responseText);
 
-                            var informationForm = me.informationFormPanel.getForm();
-
                             Ext.Object.each(data.data, function(section, data) {
                                 var fieldset = me.panel.query('[name=' + section + ']')[0];
 
-                                if(section != 'times') {
-                                    Ext.Object.each(data, function (key, value) {
-                                        if((field = fieldset.query('[name*=' + key + ']')[0]) !== undefined) {
-                                            field.setValue(value);
-                                        }
+                                if(section == 'holiday') {
+                                    Ext.Object.each(data, function (key, data) {
+                                        me.timesForm.addNewHoliday(data);
                                     });
                                 } else {
-                                    if(data.lunchbreak !== undefined) {
-                                        // fieldset.findField('lunchbreak').setValue(data.lunchbreak);
-                                        if((field = fieldset.query('[name*=lunchbreak]')[0]) !== undefined) {
-                                            field.setValue(data.lunchbreak);
-                                        }
-                                        delete data.lunchbreak;
-                                    }
-
-                                    var timePanel = fieldset.up('form').getForm();
-
-                                    Ext.Object.each(data, function(day, daydata) {
-                                        Ext.Object.each(daydata, function(key, value) {
-                                            if((field = timePanel.findField(day + '[' + key + ']')) !== undefined) {
+                                    Ext.Object.each(data, function (key, value) {
+                                        if(Ext.isArray(value) || Ext.isObject(value)) {
+                                            Ext.Object.each(value, function (subkey, subvalue) {
+                                                if ((field = fieldset.query('[name*=' + section + '_' + key + '\[' + subkey + '\]')[0]) !== undefined) {
+                                                    field.setValue(subvalue);
+                                                }
+                                            });
+                                        } else{
+                                            if((field = fieldset.query('[name*=' + key + ']')[0]) !== undefined) {
                                                 field.setValue(value);
                                             }
-                                        });
+                                        }
                                     });
                                 }
-
                             });
 
                             me.loadMask.hide();
@@ -136,7 +120,6 @@ pimcore.plugin.docono_company.information.panel = Class.create({
                             console.log(e);
                             pimcore.helpers.showNotification(t('error'), t('docono_company.message.error.form_data_load'), 'error');
                         }
-
                     },
                     failure: function () {
                         Ext.MessageBox.show({

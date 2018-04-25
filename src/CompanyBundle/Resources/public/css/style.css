@@ -41,6 +41,12 @@
     background-image: url('../img/location.png');
 }
 
+.docono_icon_seo {
+    background-size: 20px 20px;
+    background-image: url('../img/seo.png');
+}
+
+
 .docono_icon_save {
     width: 20px !important;
     height: 20px !important;
@@ -56,13 +62,25 @@
     background-image: url('../img/delete_orange.png');
 }
 
+.docono_icon_add {
+    background-image: url('../img/add.png');
+}
+
 .docono .x-btn.clear {
     background: none;
     border: none;
 }
 
+.docono .x-btn.clear span {
+    color: #f08318 !important;
+}
+
 .docono .x-btn.clear:hover {
     background: #f08318 !important;
+}
+
+.docono .x-btn.clear:hover .x-btn-inner {
+    color: #ffffff !important;
 }
 
 .docono .x-btn.clear:hover .docono_icon_delete {
@@ -91,6 +109,10 @@
 
 .docono .x-btn:hover .docono_icon_save {
     background-image: url('../img/rocket_orange.png');
+}
+
+.docono .x-btn:hover .docono_icon_add {
+    background-image: url('../img/add_orange.png');
 }
 
 .docono_button{
