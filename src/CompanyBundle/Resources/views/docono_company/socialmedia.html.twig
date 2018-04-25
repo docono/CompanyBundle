@@ -1,7 +1,7 @@
 <ul class="social-media">
 {% for name, link in socialmedia %}
     {% if link != '' %}
-    <li class="{{ name }}"><a href="{{ link }}"></a></li>
+    <li class="{{ name }}"><a href="{{ link }}"><i class="fab fa-{{ name }}"></i></a></li>
     {% endif %}
 {% endfor %}
 </ul>

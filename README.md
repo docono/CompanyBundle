@@ -1,6 +1,4 @@
 # DOCONO.io Company Bundle
-![interface](https://docono.io/companyBundle/interface.jpg)
-
 * [Description](#getting-started)
 * [Configuration File](#configuration-file)
 * [Templates](#templates)
@@ -63,9 +61,9 @@ company:
     country: CH
     phone: '+41000000'
     email: hello@docono.io
-    description: 'DOCONO | digitale Problemlöser'
+    description: 'DOCONO | Inter-Web Freelancers'
 socialmedia:
-    linkedin: 'https://www.linkedin.com/company/docono/'
+    linkedin: ''
     xing: ''
     facebook: 'http://www.facebook.com/docono.io'
     googleplus: ''
@@ -85,12 +83,11 @@ coordinates:
     long: '8.30'
     hasmap: 'https://goo.gl/maps/CPzgDp35bS52'
 times:
-    lunchbreak: true
-    monday: { open: '08:00', close: '12:00', open_pm: '13:00', close_pm: '17:00', closed: false }
-    tuesday: { open: '09:00', close: '12:00', open_pm: '13:30', close_pm: '16:00', closed: false }
-    wednesday: { open: '09:00', close: '16:00', closed: false }
+    monday: { open: '08:00', close: '15:00', closed: false }
+    tuesday: { open: '09:00', close: '15:00', closed: false }
+    wednesday: { open: '09:00', close: '15:00', closed: false }
     thursday: { open: '09:00', close: '15:00', closed: false }
-    friday: { closed: true }
+    friday: { open: '09:00', close: '15:00', closed: false }
     saturday: { closed: true }
     sunday: { closed: true }
 ```
@@ -135,11 +132,10 @@ Implementing it into your view:
 ## Rendering Templates
 
 Template options:
-* address         [only address]
-* times           [only opening times]
-* socialmedia     [only social media]
-* full            [all information]
-* template        [using your customised template]
+* address   [only address]
+* times     [only opening times]
+* full      [all information]
+* template  [using your customised template]
 
 Type options:
 * Template  [only HTML]
@@ -149,9 +145,9 @@ Type options:
 ### Document Tag
 #### configuration
 
-| Name               | Type    | Configuration                                                                                                    |
-|--------------------|---------|------------------------------------------------------------------------------------------------------------------|
-| `tpl`              | string  | `address`, `times`, `socialmedia`, `full` or tpl path                                                            |
+| Name               | Type    | Configuration                                                                                                           |
+|--------------------|---------|-------------------------------------------------------------------------------------------------------------------------|
+| `tpl`              | string  | `address`, `times`, `full` or tpl path                                                                                        |
 | `type`             | string  | use service const for type configuration (html, schema, combined) e.g.: `\CompanyBundle\Services\Template::html` |
 
 #### basic usage
@@ -169,14 +165,13 @@ The Template Render Service is registered as `docono.company.template`
 
 #### Methods
 
-| Name                                                   | Return   | Description                                |
-|--------------------------------------------------------|----------|--------------------------------------------|
-| `template(String $tpl, String $type=self::combined)`   | string   | render custom template                     |
-| `address(String $type=self::combined)`                 | string   | render standard address template           |
-| `times(String $type=self::combined)`                   | string   | render standard times template             |
-| `socialmedia()`                                        | string   | render standard social media html template |
-| `full(String $type=self::combined)`                    | string   | render standard full template              |
-| `__toString()`                                         | string   | full() alias                               |
+| Name                                                   | Return   | Description                        |
+|--------------------------------------------------------|----------|------------------------------------|
+| `template(String $tpl, String $type=self::combined)`   | string   | render custom template             |
+| `address(String $type=self::combined)`                 | string   | render standard address template   |
+| `times(String $type=self::combined)`                   | string   | render standard times template     |
+| `full(String $type=self::combined)`                    | string   | render standard full template      |
+| `__toString()`                                         | string   | full() alias                       |
 
 
 #### basic usage

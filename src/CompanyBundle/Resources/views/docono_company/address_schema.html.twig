@@ -2,8 +2,8 @@
 {
     "@context": "http://schema.org",
     "@type": "{{ schema.type }}",
-    {% include '@docono.company/Schema/partial.address.html.twig' %}
-    "description": "{{ company.description }}",
+    {% include '@docono.company/docono_company/partial.address.html.twig' %}
+    "description": "{{ seo[app.request.locale].description }}",
     "name": "{{ company.name }}",
     "@id": "",
     "url": "{{ schema.url }}",

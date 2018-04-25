@@ -4,21 +4,21 @@
     "@type": "{{ schema.type }}",
     "additionalType": "{{ schema.subtype }}",
     "name": "{{ company.name }}",
-    "description": "{{ company.description }}",
+    "description": "{{ seo[app.request.locale].description }}",
     "@id": "",
     "url": "{{ schema.url }}",
     "email":"{{ company.email }}",
     "phone":"{{ company.phone }}",
     "logo": "{{ schema.logo }}",
     "image": "{{ schema.image }}",
-    "hasMap": "{{ coordinates.hasmap }}",
-    {% include '@docono.company/Schema/partial.address.html.twig' %}
+    "hasMap": "{{ location.link }}",
+    {% include '@docono.company/docono_company/partial.address.html.twig' %}
     "geo": {
       "@type": "GeoCoordinates",
-   	  "latitude": "{{ coordinates.lat }}",
-      "longitude": "{{ coordinates.long }}"
+   	  "latitude": "{{ location.lat }}",
+      "longitude": "{{ location.long }}"
     },
-    {% include '@docono.company/Schema/partial.times.html.twig' %}
+    {% include '@docono.company/docono_company/partial.times.html.twig' %}
     "sameAs": [
 {% for media in socialmedia %}
   {% if media != '' %}
@@ -27,4 +27,4 @@
 {% endfor %}
     ]
   }
-  </script>
+</script>

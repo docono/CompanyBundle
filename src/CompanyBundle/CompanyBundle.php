@@ -17,11 +17,14 @@ class CompanyBundle extends AbstractPimcoreBundle
     public function getJsPaths() {
         return [
             '/bundles/company/js/plugin.js',
+	        '/bundles/company/js/store/country.js',
             '/bundles/company/js/panel.js',
             '/bundles/company/js/information/panel.js',
             '/bundles/company/js/information/form.js',
             '/bundles/company/js/advanced/form.js',
-            '/bundles/company/js/store/country.js'
+            '/bundles/company/js/times/form.js',
+            '/bundles/company/js/map/form.js',
+            '/bundles/company/js/seo/form.js'
         ];
     }
 

@@ -17,4 +17,15 @@
     {% endif %}
     {% endif %}
 {% endfor %}
+{% if (holiday is defined) %}
+    {% for data in holiday %}
+        {
+            "@type": "OpeningHoursSpecification",
+            "opens":  "00:00"
+            "closes":  "00:00",
+            "validFrom": "{{ data.start }}",
+            "validThrough": "{{ data.end }}"
+        },
+    {% endfor %}
+{% endif %}
 ],
