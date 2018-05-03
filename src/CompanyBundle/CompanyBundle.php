@@ -21,9 +21,7 @@ class CompanyBundle extends AbstractPimcoreBundle
             '/bundles/company/js/panel.js',
             '/bundles/company/js/information/panel.js',
             '/bundles/company/js/information/form.js',
-            '/bundles/company/js/advanced/form.js',
             '/bundles/company/js/times/form.js',
-            '/bundles/company/js/map/form.js',
             '/bundles/company/js/seo/form.js'
         ];
     }
@@ -40,8 +38,7 @@ class CompanyBundle extends AbstractPimcoreBundle
         ];
     }
 
-    protected function getComposerPackageName(): string
-    {
+    protected function getComposerPackageName(): string {
         return 'docono/company-bundle';
     }
 }
