@@ -9,7 +9,7 @@ pimcore.plugin.docono_company.panel = Class.create({
         if (!this.panel) {
             this.panel = Ext.create('Ext.tab.Panel', {
                 id: 'docono_company_panel',
-                title: t('docono_company.title'),
+                title: t('docono_company_title'),
                 iconCls: 'docono_icon_megaphone',
                 cls: 'docono',
                 border: false,
@@ -26,7 +26,7 @@ pimcore.plugin.docono_company.panel = Class.create({
                             text: 'powered by'
                         }, {
                             xtype: 'button',
-                            text: 'DOCONO | digitale Problemlöser',
+                            text: 'DOCONO | WE MAKE WEB',
                             border: false,
                             cls: 'docono_button',
                             iconCls: 'docono_icon_logo',

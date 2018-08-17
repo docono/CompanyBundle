@@ -40,7 +40,7 @@ pimcore.plugin.docono_company.information.panel = Class.create({
                             xtype: 'button',
                             iconCls: 'docono_icon_save',
                             cls: 'docono_style',
-                            text: t('docono_company.save'),
+                            text: t('docono_company_save'),
                             handler: function () {
                                 var params = Ext.Object.merge({
                                         'site': me.id
@@ -56,13 +56,13 @@ pimcore.plugin.docono_company.information.panel = Class.create({
                                     method: 'GET',
                                     success: function (xhr) {
                                         pimcore.helpers.loadingHide();
-                                        pimcore.helpers.showNotification(t("success"), t("docono_company.message.successful_saved"), "success");
+                                        pimcore.helpers.showNotification(t("success"), t("docono_company_message_successful_saved"), "success");
                                     },
                                     failure: function () {
                                         pimcore.helpers.loadingHide();
                                         Ext.MessageBox.show({
                                             title: 'Error',
-                                            msg: t('docono_company,nessage.error.updating_data_failed'),
+                                            msg: t('docono_company_nessage_error_updating_data_failed'),
                                             buttons: Ext.Msg.OK,
                                             icon: Ext.MessageBox.ERROR
                                         });
@@ -77,7 +77,7 @@ pimcore.plugin.docono_company.information.panel = Class.create({
             this.panel.on("afterrender", function () {
                 this.loadMask = new Ext.LoadMask({
                     target: this.panel,
-                    msg: t("docono_company.message.please_wait")
+                    msg: t("docono_company_message_please_wait")
                 });
 
                 this.loadMask.show();
@@ -118,13 +118,13 @@ pimcore.plugin.docono_company.information.panel = Class.create({
 
                         }catch(e){
                             console.log(e);
-                            pimcore.helpers.showNotification(t('error'), t('docono_company.message.error.form_data_load'), 'error');
+                            pimcore.helpers.showNotification(t('error'), t('docono_company_message_error_form_data_load'), 'error');
                         }
                     },
                     failure: function () {
                         Ext.MessageBox.show({
                             title: t('error'),
-                            msg: t('docono_company.message.error.xhr_failed'),
+                            msg: t('docono_company_message_error_xhr_failed'),
                             buttons: Ext.Msg.OK,
                             icon: Ext.MessageBox.ERROR
                         });

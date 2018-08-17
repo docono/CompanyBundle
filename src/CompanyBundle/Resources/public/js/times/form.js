@@ -13,7 +13,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
             id: 'times_form_' + this.id,
             region: 'center',
             layout: 'hbox',
-            title: t('docono_company.times'),
+            title: t('docono_company_times'),
             iconCls: 'docono_icon_times',
             autoScroll: true,
             defaults: {
@@ -30,7 +30,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
 
     getHolidayPanel: function() {
         this.holidayPanel = Ext.create('Ext.form.FieldSet', {
-            title: t('docono_company.holidays'),
+            title: t('docono_company_holidays'),
             name: 'holiday',
             flex: 1,
             items: [{
@@ -42,7 +42,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
                 },
                 items: {
                     xtype: 'button',
-                    text: t('docono_company.holidays.add'),
+                    text: t('docono_company_holidays_add'),
                     iconCls: 'docono_icon_add',
                     cls: 'docono_style',
                     handler: function() {
@@ -77,11 +77,11 @@ pimcore.plugin.docono_company.times.form = Class.create({
             items: [{
                 xtype: 'textfield',
                 name: fieldName + '[name]',
-                fieldLabel: t('docono_company.holidays.name'),
+                fieldLabel: t('docono_company_holidays_name'),
                 value: data['name']
             }, {
                 name: fieldName + '[start]',
-                fieldLabel: t('docono_company.holidays.start'),
+                fieldLabel: t('docono_company_holidays_start'),
                 value: data['start'],
                 format: 'd.m.Y',
                 listeners: {
@@ -98,12 +98,12 @@ pimcore.plugin.docono_company.times.form = Class.create({
                 }
             }, {
                 name: fieldName + '[end]',
-                fieldLabel: t('docono_company.holidays.end'),
+                fieldLabel: t('docono_company_holidays_end'),
                 value: data['end'],
                 format: 'd.m.Y'
             }, {
                 xtype: 'button',
-                text: t('docono_company.holidays.delete'),
+                text: t('docono_company_holidays_delete'),
                 iconCls: "docono_icon_delete",
                 cls: 'clear',
                 handler: function() {
@@ -119,7 +119,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
 
     getTimesPanel: function() {
         this.timesFieldset = Ext.create('Ext.form.FieldSet', {
-            title: t('docono_company.opening_times'),
+            title: t('docono_company_opening_times'),
             name: 'times',
             flex: 1,
             layout: {
@@ -144,7 +144,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
                     xtype: 'checkbox',
                     colspan: 2,
                     name: 'times_lunchbreak',
-                    boxLabel: t('docono_company.opening_times.lunchbreak'),
+                    boxLabel: t('docono_company_opening_times_lunchbreak'),
                     margin: '0 0 10',
                     listeners: {
                         change: function(checkbox, newValue, oldValue, eOpts) {
@@ -179,13 +179,13 @@ pimcore.plugin.docono_company.times.form = Class.create({
             }, {
                 xtype: 'checkboxfield',
                 name: 'times_' + day + '[closed]',
-                boxLabel: t('docono_company.opening_times.closed'),
+                boxLabel: t('docono_company_opening_times_closed'),
                 cellCls: 'day-limiter',
                 margin: 0
             },{
                 name: 'times_' + day + '[open]',
                 margin: '5 20 10 0',
-                emptyText: t('docono_company.opening_times.opening'),
+                emptyText: t('docono_company_opening_times_opening'),
                 listeners: {
                     change: function (field,  time, oldTime, eOpts) {
                         var endField = field.nextSibling('timefield[name*=times_' + day + '\[close\]');
@@ -200,7 +200,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
                 }
             }, {
                 name: 'times_' + day + '[close]',
-                emptyText: t('docono_company.opening_times.closing')
+                emptyText: t('docono_company_opening_times_closing')
             }, {
                 xtype: 'fieldset',
                 name: 'pm_times',
@@ -229,7 +229,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
                     {
                         name: 'times_' + day + '[open_pm]',
                         margin: '0 20 10 0',
-                        emptyText: t('docono_company.opening_times.opening'),
+                        emptyText: t('docono_company_opening_times_opening'),
                         listeners: {
                             change: function (field,  time, oldTime, eOpts) {
                                 var endField = field.nextSibling('timefield[name*=times_' + day + '\[close_pm\]');
@@ -244,7 +244,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
                         }
                     }, {
                         name: 'times_' + day + '[close_pm]',
-                        emptyText: t('docono_company.opening_times.closing')
+                        emptyText: t('docono_company_opening_times_closing')
                     }
                 ]
             }

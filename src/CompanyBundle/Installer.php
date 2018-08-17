@@ -24,8 +24,6 @@ class Installer extends AbstractInstaller
 
     public function install() {
         try {
-            $this->importTranslations();
-
             fopen(__DIR__ . '/installed', 'w');
 
             return true;
@@ -55,8 +53,4 @@ class Installer extends AbstractInstaller
         unlink(__DIR__ . '/installed');
     }
 
-    private function importTranslations()
-    {
-        Admin::importTranslationsFromFile($this->installSourcesPath . '/admin-translations/init.csv', true);
-    }
 }

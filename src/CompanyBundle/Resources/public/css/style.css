@@ -8,7 +8,7 @@
 }
 
 .docono_menu_icon:after {
-    background-color: #f08318 !important;
+    background-color: #D85351 !important;
 }
 
 .docono_icon_megaphone {
@@ -72,11 +72,11 @@
 }
 
 .docono .x-btn.clear span {
-    color: #f08318 !important;
+    color: #D85351 !important;
 }
 
 .docono .x-btn.clear:hover {
-    background: #f08318 !important;
+    background: #D85351 !important;
 }
 
 .docono .x-btn.clear:hover .x-btn-inner {
@@ -89,7 +89,7 @@
 
 .docono .x-btn.docono_style  {
     padding: 7px 25px;
-    background: #f08318 !important;
+    background: #D85351 !important;
     border: none;
 }
 
@@ -104,7 +104,7 @@
 }
 
 .docono .x-btn.docono_style:hover .x-btn-inner {
-    color: #f08318;
+    color: #D85351;
 }
 
 .docono .x-btn:hover .docono_icon_save {
@@ -125,18 +125,18 @@
 }
 
 .docono_button .x-btn-inner {
-    color: #f08318;
+    color: #000000;
     font-weight: bold;
 }
 
 .docono_button:hover .x-btn-inner {}
 
 .docono_icon_logo {
-    background: url('../img/logo.png') center center no-repeat !important;
+    background: url('../img/logo.svg') center center no-repeat !important;
 }
 
 .docono .x-tab-default-top.x-tab-active {
-    border-top: 3px solid #f08318;
+    border-top: 3px solid #D85351;
 }
 
 .docono .x-tab-default-top.x-tab-active .x-tab-inner {
@@ -144,11 +144,11 @@
 }
 
 .docono .x-fieldset-header-text {
-    color: #f08318;
+    color: #D85351;
 }
 
 .docono .x-form-trigger-wrap-default.x-form-trigger-wrap-focus {
-    border-color: #f08318;
+    border-color: #D85351;
 }
 
 .docono fieldset.pm-time {
@@ -158,9 +158,72 @@
 
 .docono td.day-limiter {
     padding-top: 10px;
-    border-top: 1px solid #f08318;
+    border-top: 1px solid #D85351;
 }
 
 .docono td.day-limiter label.day {
-    color: #f08318;
+    color: #D85351;
 }
+
+.docono .docono-seperator {
+    margin: 20px 0px;
+    background-color: #D85351;
+    border: none;
+    height: 1px;
+}
+
+.docono .socialmedia-icon {
+    padding-left: 30px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 20px 20px;
+}
+
+.docono .linkedin_icon {
+    background-image: url("../img/linkedin.png");
+}
+
+.docono .xing_icon {
+    background-image: url("../img/xing.png");
+}
+
+.docono .facebook_icon {
+    background-image: url("../img/facebook.png");
+}
+
+.docono .googleplus_icon {
+    background-image: url("../img/googleplus.png");
+}
+.docono .twitter_icon {
+    background-image: url("../img/twitter.png");
+}
+
+.docono .instagram_icon {
+    background-image: url("../img/instagram.png");
+}
+
+.docono .pinterest_icon {
+    background-image: url("../img/pinterest.png");
+}
+
+.docono .youtube_icon {
+    background-image: url("../img/youtube.png");
+}
+
+.docono .vimeo_icon {
+    background-image: url("../img/vimeo.png");
+}
+
+.docono .vk_icon {
+    background-image: url("../img/vk.png");
+}
+
+.docono .medium_icon {
+    background-image: url("../img/medium.png");
+}
+
+.docono .reddit_icon {
+    background-image: url("../img/reddit.png");
+}
+
+

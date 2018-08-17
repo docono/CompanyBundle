@@ -23,7 +23,15 @@ included translations
 - Ukrainian (v1.0.1) thanks to Olya Batyr
 - Russian (v1.0.1) thanks to Olya Batyr
 
-#### new in v1.2
+#### new in v1.1.1
+- added VAT number field
+- added company founding information fields
+- added VKontakte, Medium & Reddit to the social media channels
+- translation fixes
+- style fixes
+
+
+#### new in v1.1.0
 - new tab organisation
 - add holidays to the opening hours
 - edit site description & keywords based on the site language
@@ -33,7 +41,7 @@ included translations
 
 ##Getting Started
 
-* download bundle with Composer ```"docono/company-bundle": "^1.2"```
+* download bundle with Composer ```"docono/company-bundle": "^1.1"```
 * install the Bundle in the Extension Management Tool in Pimcore
 * make sure the cache is flushed and Pimcore reloaded
 * open the "Company Information" panel and fill in the company details
@@ -67,8 +75,8 @@ company:
     postalcode: '6055'
     region: OW
     country: CH
-    phone: '+41000000'
-    fax: '+41000000'
+    phone: '+41 XX XXX XX XX' 
+    fax: '+41 41 670 01 70'
     email: hello@docono.io
 socialmedia:
     linkedin: 'https://www.linkedin.com/company/docono/'
@@ -82,11 +90,11 @@ socialmedia:
     vimeo: ''
 times:
     lunchbreak: true
-    monday: { open: '09:00', close: '10:00', open_pm: '13:00', close_pm: '16:00' }
-    tuesday: { open: '09:00', close: '10:00', open_pm: '13:00', close_pm: '16:00' }
-    wednesday: { open: '09:00', close: '10:00', open_pm: '13:00', close_pm: '16:00' }
-    thursday: { open: '09:00', close: '10:00', open_pm: '13:00', close_pm: '16:00' }
-    friday: { closed: 'on' }
+    monday: { open: '09:00', close: '11:30', open_pm: '13:00', close_pm: '16:00' }
+    tuesday: { open: '09:00', close: '11:30', open_pm: '13:00', close_pm: '16:00' }
+    wednesday: { open: '09:00', close: '11:30', open_pm: '13:00', close_pm: '16:00' }
+    thursday: { open: '09:00', close: '11:30', open_pm: '13:00', close_pm: '16:00' }
+    friday: { open: '09:00', close: '11:30', open_pm: '13:00', close_pm: '16:00' }
     saturday: { closed: 'on' }
     sunday: { closed: 'on' }
 holiday:
@@ -101,6 +109,9 @@ schema:
     url: 'https://docono.io'
     logo: /var/assets/logo/DOCONO-logo.jpg
     image: /var/assets/logo/DOCONO-logo.jpg
+    founder-name: ''
+    founding-date: '2017'
+    founding-town: 'Alpnach Dorf'
 location:
     lat: '47.050168'
     long: '8.309307'

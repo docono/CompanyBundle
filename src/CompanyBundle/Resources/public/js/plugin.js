@@ -9,7 +9,7 @@ pimcore.plugin.docono_company = Class.create(pimcore.plugin.admin, {
 
         pimcore.plugin.broker.registerPlugin(this);
 
-        this.navEl = Ext.get('pimcore_menu_search').insertSibling('<li id="docono_company" data-menu-tooltip="'+t('docono_company.title')+'" class="docono_menu_icon">'+t('docono_company.title')+'</li>', 'after');
+        this.navEl = Ext.get('pimcore_menu_search').insertSibling('<li id="docono_company" data-menu-tooltip="'+t('docono_company_title')+'" class="docono_menu_icon">'+t('docono_company_title')+'</li>', 'after');
         Ext.get("docono_company").on("mousedown", function(e) {
 
             try {
