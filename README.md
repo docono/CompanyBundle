@@ -23,6 +23,10 @@ included translations
 - Ukrainian (v1.0.1) thanks to Olya Batyr
 - Russian (v1.0.1) thanks to Olya Batyr
 
+#### new in v1.2.0
+- replaced Twig templates with PHP templates
+- caching
+
 #### new in v1.1.1
 - added VAT number field
 - added company founding information fields
@@ -121,9 +125,9 @@ location:
 <a name="templates"/>
 
 ## Templates
-CompanyBundle uses the Twig template engine.
+CompanyBundle uses normal php templates since v1.2.0.
 
-## Types
+### Types
 There are three different kind of templates: html, schema and combined.
 
 Each typ has its own folder for the templates, which are defined in the Template Service as constants.
@@ -137,23 +141,26 @@ Each typ has its own folder for the templates, which are defined in the Template
 If you do not like the standard templates simply override it with a template in the app template dir `app/Resources/views'.
 
 #### example
-To override the address HTML template (`address_html.html.twig`) create following file:
-`app/Resources/views/docono_company/address_html.html.twig`
+To override the address HTML template (`address_html.html.php`) create following file:
+`app/Resources/CompanyBundle/views/docono_company/address_html.html.php`
 
-To override the address Schema.org template (`address_schema.html.twig`) create following file:
-`app/Resources/views/docono_company/address_schema.html.twig`
+To override the address Schema.org template (`address_schema.html.php`) create following file:
+`app/Resources/CompanyBundle/views/docono_company/address_schema.html.php`
 
 ### Custom Template
 To use your own template simply create your template in a folder the views dir.
 
 #### example
 To build your own Stemplate creat following file:
-`app/Resources/views/myTemplates/demo.html.twig`
+`app/Resources/views/myTemplates/demo.html.php`
 
 Implementing it into your view:
 ```php
-<?= $this->company('demoTemplate', ['tpl'=>'myTemplates/demo.html.twig']); ?>
+<?= $this->company('demoTemplate', ['tpl'=>'myTemplates/demo.html.php']); ?>
 ```
+
+### caching
+All templates are cached and assigned to the tag 'CompanyBundle_templates';
 
 
 <a name="rendering-templates"/>
@@ -214,7 +221,7 @@ The Template Render Service is registered as `docono.company.template`
 #### advanced usage
 ```php
 <?= $this->container->get('docono.company.template')->address(\CompanyBundle\Services\Template::combined); ?>
-<?= $this->container->get('docono.company.template')->template('myTemplates/demo.html.twig'); ?>
+<?= $this->container->get('docono.company.template')->template('myTemplates/demo.html.php'); ?>
 ```
 
 <a name="configuration-helper"/>

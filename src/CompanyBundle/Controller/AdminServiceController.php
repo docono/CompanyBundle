@@ -45,6 +45,9 @@ class AdminServiceController extends AdminController
 
             //wrie Yaml file
             file_put_contents(Config::getFileForSite($site), $yaml);
+
+            // clear template cache
+            \Pimcore\Cache::clearTag("CompanyBundle_templates");
         } catch(\Exception $e) {
             return new JsonResponse(['success'=> false]);
         }

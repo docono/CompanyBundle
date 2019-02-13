@@ -72,10 +72,19 @@ class Template {
      */
     public function template(String $tpl) : String {
         //ensure template exists
-        if(!$this->templating->exists('@docono.company/'.$tpl))
+        if(!$this->templating->exists('CompanyBundle::' . $tpl))
             throw new \Exception('could not find template "' . $tpl . '""');
 
-        return $this->templating->render('@docono.company/' . $tpl, Config::getData());
+        $cacheKey = md5($tpl);
+
+        if(!$html = \Pimcore\Cache::load($cacheKey)) {
+
+            $html = $this->templating->render('CompanyBundle::' . $tpl, Config::getData());
+
+            \Pimcore\Cache::save($html, $cacheKey, ['CompanyBundle_templates']);
+        }
+
+        return $html;
     }
 
     /**
@@ -85,7 +94,7 @@ class Template {
      * @return String
      */
     public function address(String $type=self::combined) : String {
-    	return $this->template('docono_company/address_' . $type . '.html.twig');
+    	return $this->template('docono_company/address_' . $type . '.html.php');
     }
 
     /**
@@ -95,7 +104,7 @@ class Template {
      * @return String
      */
     public function times(String $type=self::combined) : String {
-	    return $this->template('docono_company/times_' . $type . '.html.twig');
+	    return $this->template('docono_company/times_' . $type . '.html.php');
     }
 
     /**
@@ -104,7 +113,7 @@ class Template {
      * @return string
      */
     public function socialmedia() : String {
-	    return $this->template('docono_company/socialmedia.html.twig');
+	    return $this->template('docono_company/socialmedia.html.php');
     }
 
     /**
@@ -114,7 +123,7 @@ class Template {
      * @return string
      */
     public function full(String $type=self::combined) : string {
-	    return $this->template('docono_company/full_' . $type . '.html.twig');
+	    return $this->template('docono_company/full_' . $type . '.html.php');
     }
 
     /**
