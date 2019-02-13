@@ -118,7 +118,7 @@ pimcore.plugin.docono_company.seo.form = Class.create({
             fieldLabel: t("docono_company_schema_founding_town")
           }]
       }, {
-        title: t('docono_company.location.hq_coordinates'),
+        title: t('docono_company_location_hq_coordinates'),
         name: 'location',
         defaults: {
           xtype: 'textfield',
