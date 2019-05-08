@@ -47,13 +47,13 @@ pimcore.plugin.docono_company.seo.form = Class.create({
           flex: 1,
           defaults: {
             xtype: 'textfield',
-            anchor:	"100%"
+            anchor:	'100%'
           },
           items: [{
             xtype: 'textarea',
             name: siteName + '[description]',
             labelAlign: 'left',
-            fieldLabel: t("docono_company_seo_description"),
+            fieldLabel: t('docono_company_seo_description'),
             minLength: 50,
             maxLength: 300
           }, {
@@ -86,43 +86,43 @@ pimcore.plugin.docono_company.seo.form = Class.create({
         name: 'schema',
         defaults: {
           xtype: 'textfield',
-          width: 400
+          anchor: '100%'
         },
         items: [{
           name: 'schema[type]',
-          fieldLabel: t("docono_company_schema_type"),
+          fieldLabel: t('docono_company_schema_type'),
           emptyText: 'LocalBusiness'
         }, {
           name: 'schema[subtype]',
-          fieldLabel: t("docono_company_schema_subtype"),
+          fieldLabel: t('docono_company_schema_subtype'),
           emptyText: 'http://www.productontology.org/id/...'
         }, {
           name: 'schema[url]',
-          fieldLabel: t("docono_company_schema_url"),
+          fieldLabel: t('docono_company_schema_url'),
           emptyText: 'https://docono.io'
         },
-          this.getAssetDnd('schema[logo]', 'docono_company_schema_logo'),
-          this.getAssetDnd('schema[image]', 'docono_company_schema_image'),
-          {
-            xtype: 'box',
-            cls: 'docono-seperator',
-            autoEl: {tag: 'hr'}
-          }, {
-            name: 'schema[founder-name]',
-            fieldLabel: t("docono_company_schema_founder_name")
-          }, {
-            name: 'schema[founding-date]',
-            fieldLabel: t("docono_company_schema_founding_date")
-          }, {
-            name: 'schema[founding-town]',
-            fieldLabel: t("docono_company_schema_founding_town")
-          }]
+        this.getAssetDnd('schema[logo]', 'docono_company_schema_logo'),
+        this.getAssetDnd('schema[image]', 'docono_company_schema_image'),
+        {
+          xtype: 'box',
+          cls: 'docono-seperator',
+          autoEl: {tag: 'hr'}
+        }, {
+          name: 'schema[founder-name]',
+          fieldLabel: t('docono_company_schema_founder_name')
+        }, {
+          name: 'schema[founding-date]',
+          fieldLabel: t('docono_company_schema_founding_date')
+        }, {
+          name: 'schema[founding-town]',
+          fieldLabel: t('docono_company_schema_founding_town')
+        }]
       }, {
-        title: t('docono_company.location.hq_coordinates'),
+        title: t('docono_company_location_hq_coordinates'),
         name: 'location',
         defaults: {
           xtype: 'textfield',
-          width: 400
+          anchor: '100%'
         },
         items: [{
           name: 'location[lat]',
@@ -152,10 +152,11 @@ pimcore.plugin.docono_company.seo.form = Class.create({
       fieldCls: 'pimcore_droptarget_input'
     });
 
-    component.on("render", function (el) {
+    component.on('render', function (el) {
       new Ext.dd.DropZone(el.getEl(), {
         reference: this,
-        ddGroup: "element",
+        ddGroup: 'element',
+
         getTargetFromEvent: function (e) {
           return component.getEl();
         },
@@ -189,10 +190,10 @@ pimcore.plugin.docono_company.seo.form = Class.create({
     }.bind(this));
 
     var items = [component, {
-      xtype: "button",
-      iconCls: "docono_icon_delete",
+      xtype: 'button',
+      iconCls: 'docono_icon_delete',
       cls: 'clear',
-      style: "margin-left: 5px",
+      style: 'margin-left: 5px',
       handler: function() {
         component.setValue('');
       }
@@ -203,7 +204,7 @@ pimcore.plugin.docono_company.seo.form = Class.create({
       fieldLabel: t(translationTag),
       layout: 'hbox',
       items: items,
-      componentCls: "object_field",
+      componentCls: 'object_field',
       border: false,
       style: {
         padding: 0

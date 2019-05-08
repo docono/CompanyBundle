@@ -156,12 +156,23 @@
     border: none !important;
 }
 
-.docono td.day-limiter {
-    padding-top: 10px;
-    border-top: 1px solid #D85351;
+.docono .day-limiter {
+    border-top: 1px solid #D85351 !important;
 }
 
-.docono td.day-limiter label.day {
+.docono .times-fieldset {
+    border: none !important;
+}
+
+.docono .times-fieldset table {
+    width: 100%;
+}
+
+.docono .times-fieldset td {
+    width: 50%;
+}
+
+.docono .day-limiter label.day {
     color: #D85351;
 }
 
