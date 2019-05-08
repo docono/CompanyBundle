@@ -28,7 +28,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
         return this.formPanel;
     },
 
-    getHolidayPanel: function() {
+    getHolidayPanel: function () {
         this.holidayPanel = Ext.create('Ext.form.FieldSet', {
             title: t('docono_company_holidays'),
             name: 'holiday',
@@ -45,7 +45,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
                     text: t('docono_company_holidays_add'),
                     iconCls: 'docono_icon_add',
                     cls: 'docono_style',
-                    handler: function() {
+                    handler: function () {
                         this.addNewHoliday();
                     }.bind(this)
                 }
@@ -55,10 +55,10 @@ pimcore.plugin.docono_company.times.form = Class.create({
         return this.holidayPanel;
     },
 
-    addNewHoliday: function(data) {
+    addNewHoliday: function (data) {
         var fieldName = 'holiday_' + this.holidayId;
 
-        if(data === undefined) {
+        if (data === undefined) {
             data = {
                 'name': '',
                 'start': '',
@@ -72,7 +72,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
             defaults: {
                 xtype: 'datefield',
                 allowBlank: false,
-                anchor:	"100%"
+                anchor: "100%"
             },
             items: [{
                 xtype: 'textfield',
@@ -91,7 +91,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
 
                         var curEndDate = endField.getValue();
 
-                        if((curEndDate === null) || (curEndDate < date)) {
+                        if ((curEndDate === null) || (curEndDate < date)) {
                             endField.setValue(date);
                         }
                     }
@@ -106,7 +106,7 @@ pimcore.plugin.docono_company.times.form = Class.create({
                 text: t('docono_company_holidays_delete'),
                 iconCls: "docono_icon_delete",
                 cls: 'clear',
-                handler: function() {
+                handler: function () {
                     this.holidayPanel.remove(fieldName);
                 }.bind(this)
             }]
@@ -117,40 +117,24 @@ pimcore.plugin.docono_company.times.form = Class.create({
         this.holidayPanel.add(holidayFieldset);
     },
 
-    getTimesPanel: function() {
+    getTimesPanel: function () {
         this.timesFieldset = Ext.create('Ext.form.FieldSet', {
             title: t('docono_company_opening_times'),
             name: 'times',
             flex: 1,
-            layout: {
-                type: 'table',
-                columns: 2,
-                tableAttrs: {
-                    style: {
-                        width: '100%'
-                    }
-                }
-            },
             margin: '20 0 20 20',
-            defaults: {
-                xtype: 'timefield',
-                format: 'H:i',
-                increment: '30',
-                margin: '5 0 10 0',
-                columnWidth: '100%'
-            },
             items: [
                 {
                     xtype: 'checkbox',
-                    colspan: 2,
                     name: 'times_lunchbreak',
                     boxLabel: t('docono_company_opening_times_lunchbreak'),
                     margin: '0 0 10',
                     listeners: {
-                        change: function(checkbox, newValue, oldValue, eOpts) {
-                            var fieldsets = checkbox.up('fieldset').query('fieldset');
-                            Ext.each(fieldsets, function(element) {
-                                element.toggle();
+                        change: function (checkbox, newValue, oldValue, eOpts) {
+                            var fieldsets = checkbox.up('fieldset').query('fieldset[name=pm_times]');
+                            Ext.each(fieldsets, function (element) {
+                                if(!element.up('fieldset').query('[name*=allday_closed]')[0].value)
+                                    element.toggle();
                             });
                         }
                     }
@@ -169,82 +153,117 @@ pimcore.plugin.docono_company.times.form = Class.create({
         return this.timesFieldset;
     },
 
-    addDayFields: function(day) {
+    addDayFields: function (day) {
         this.timesFieldset.add([
             {
-                xtype: 'label',
-                text: t(day.charAt(0).toUpperCase() + day.slice(1)),
-                cls: 'day',
-                cellCls: 'day-limiter'
-            }, {
-                xtype: 'checkboxfield',
-                name: 'times_' + day + '[closed]',
-                boxLabel: t('docono_company_opening_times_closed'),
-                cellCls: 'day-limiter',
-                margin: 0
-            },{
-                name: 'times_' + day + '[open]',
-                margin: '5 20 10 0',
-                emptyText: t('docono_company_opening_times_opening'),
-                listeners: {
-                    change: function (field,  time, oldTime, eOpts) {
-                        var endField = field.nextSibling('timefield[name*=times_' + day + '\[close\]');
-                        endField.setMinValue(time);
-
-                        curEndTime = endField.getValue();
-
-                        if((curEndTime === null) || (curEndTime < time)) {
-                            endField.setValue(Ext.Date.add(time, Ext.Date.HOUR, 1));
-                        }
-                    }
-                }
-            }, {
-                name: 'times_' + day + '[close]',
-                emptyText: t('docono_company_opening_times_closing')
-            }, {
                 xtype: 'fieldset',
-                name: 'pm_times',
+                name: 'day_settings_' + day,
+                flex: 1,
                 border: false,
-                cls: 'pm-time',
                 margin: 0,
-                padding: 0,
-                colspan: 2,
-                layout: {
-                    type: 'table',
-                    columns: 2,
-                    tableAttrs: {
-                        style: {
-                            width: '100%'
-                        }
-                    }
-                },
-                collapsed: true,
+                padding: '10 0',
+                cls: 'day-limiter',
                 defaults: {
-                    xtype: 'timefield',
-                    format: 'H:i',
-                    increment: '30',
-                    margin: '0 0 10'
-                },
-                items: [
-                    {
-                        name: 'times_' + day + '[open_pm]',
-                        margin: '0 20 10 0',
-                        emptyText: t('docono_company_opening_times_opening'),
-                        listeners: {
-                            change: function (field,  time, oldTime, eOpts) {
-                                var endField = field.nextSibling('timefield[name*=times_' + day + '\[close_pm\]');
-                                endField.setMinValue(time);
-
-                                curEndTime = endField.getValue();
-
-                                if((curEndTime === null) || (curEndTime < time)) {
-                                    endField.setValue(Ext.Date.add(time, Ext.Date.HOUR, 1));
-                                }
+                    xtype: 'fieldset',
+                    flex: 1,
+                    border: false,
+                    margin: 0,
+                    padding: 0,
+                    cls: 'times-fieldset',
+                    layout: {
+                        type: 'table',
+                        columns: 2,
+                        tableAttrs: {
+                            style: {
+                                width: '100%'
                             }
                         }
+                    },
+                    collapsed: false,
+                    defaults: {
+                        xtype: 'timefield',
+                        format: 'H:i',
+                        increment: '30',
+                        margin: '0 0 10'
+                    },
+                },
+                items: [{
+                    name: 'times_config',
+                    items: [
+                            {
+                                xtype: 'label',
+                                cls: 'day',
+                                text: t(day.charAt(0).toUpperCase() + day.slice(1)),
+                            }, {
+                                xtype: 'checkboxfield',
+                                name: 'times_' + day + '[allday_closed]',
+                                boxLabel: t('docono_company_opening_times_closed'),
+                                margin: 0,
+                                listeners: {
+                                    change: function (checkbox, newValue, oldValue, eOpts) {
+                                        var luncbreak = checkbox.up('fieldset[name=times]').query('[name=times_lunchbreak]')[0].value;
+                                        var fieldsets = checkbox.up('fieldset').up('fieldset').query('fieldset[name$=_times]');
+
+                                        Ext.each(fieldsets, function (element) {
+
+                                            if((element.name == 'pm_times') && !luncbreak)
+                                                return;
+
+                                            element.toggle();
+                                        });
+                                    }
+                                }
+                            },
+                        ]
                     }, {
-                        name: 'times_' + day + '[close_pm]',
-                        emptyText: t('docono_company_opening_times_closing')
+                        name: 'am_times',
+                        items: [
+                            {
+                                name: 'times_' + day + '[open]',
+                                margin: '0 0 10 0',
+                                emptyText: t('docono_company_opening_times_opening'),
+                                listeners: {
+                                    change: function (field, time, oldTime, eOpts) {
+                                        var endField = field.nextSibling('timefield[name*=times_' + day + '\[close\]');
+                                        endField.setMinValue(time);
+
+                                        curEndTime = endField.getValue();
+
+                                        if ((curEndTime === null) || (curEndTime < time)) {
+                                            endField.setValue(Ext.Date.add(time, Ext.Date.HOUR, 1));
+                                        }
+                                    }
+                                }
+                            }, {
+                                name: 'times_' + day + '[close]',
+                                emptyText: t('docono_company_opening_times_closing')
+                            }
+                        ]
+                    }, {
+                        name: 'pm_times',
+                        collapsed: true,
+                        items: [
+                            {
+                                name: 'times_' + day + '[open_pm]',
+                                margin: '0 0 10 0',
+                                emptyText: t('docono_company_opening_times_opening'),
+                                listeners: {
+                                    change: function (field, time, oldTime, eOpts) {
+                                        var endField = field.nextSibling('timefield[name*=times_' + day + '\[close_pm\]');
+                                        endField.setMinValue(time);
+
+                                        curEndTime = endField.getValue();
+
+                                        if ((curEndTime === null) || (curEndTime < time)) {
+                                            endField.setValue(Ext.Date.add(time, Ext.Date.HOUR, 1));
+                                        }
+                                    }
+                                }
+                            }, {
+                                name: 'times_' + day + '[close_pm]',
+                                emptyText: t('docono_company_opening_times_closing')
+                            }
+                        ]
                     }
                 ]
             }

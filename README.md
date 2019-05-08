@@ -23,6 +23,12 @@ included translations
 - Ukrainian (v1.0.1) thanks to Olya Batyr
 - Russian (v1.0.1) thanks to Olya Batyr
 
+#### new in v1.2.1
+- opening times bugfix (closing times)
+- opening times UX improvements
+
+DO CHECK YOUR TIMES AFTER UPDATE!
+
 #### new in v1.2.0
 - replaced Twig templates with PHP templates
 - caching
