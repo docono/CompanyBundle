@@ -103,4 +103,11 @@ abstract class Config {
 	public static function getLocation() : array {
 		return self::getData()['location'];
 	}
+
+    /**
+     * @return array
+     */
+	public static function getAccounts(): array {
+        return self::getData()['accounts'];
+    }
 }

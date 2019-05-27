@@ -137,6 +137,38 @@ pimcore.plugin.docono_company.seo.form = Class.create({
           fieldLabel: t('docono_company_location_link'),
           emptyText: 'https://goo.gl/maps/CPzgDp35bS52'
         }]
+      }, {
+        title: t('docono_company_socialmedia_accounts_meta'),
+        name: 'accounts',
+        defaults: {
+          xtype: 'textfield',
+          anchor: '100%'
+        },
+        items: [{
+          name: 'accounts[twitter-site]',
+          fieldLabel: t('docono_company_socialmedia_twitter_site'),
+          emptyText: '@docono',
+          cls : 'socialmedia-icon twitter_icon'
+        }, {
+          name: 'accounts[twitter-creator]',
+          fieldLabel: t('docono_company_socialmedia_twitter_creator'),
+          emptyText: '@docono',
+          cls : 'socialmedia-icon twitter_icon'
+        }, {
+          name: 'accounts[facebook-publisher]',
+          fieldLabel: t('docono_company_socialmedia_facebook_publisher'),
+          emptyText: 'https://www.facebook.com/docono.io',
+          cls : 'socialmedia-icon facebook_icon'
+        }, {
+          name: 'accounts[facebook-author]',
+          fieldLabel: t('docono_company_socialmedia_facebook_author'),
+          emptyText: 'https://www.facebook.com/docono.io',
+          cls : 'socialmedia-icon facebook_icon'
+        }, {
+          name: 'accounts[facebook-app-id]',
+          fieldLabel: t('docono_company_socialmedia_facebook_app_id'),
+          cls : 'socialmedia-icon facebook_icon'
+        }]
       }]
     });
 

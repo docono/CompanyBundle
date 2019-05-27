@@ -99,11 +99,6 @@ pimcore.plugin.docono_company.information.form = Class.create({
                         emptyText: 'https://',
                         cls : 'socialmedia-icon vk_icon'
                     }, {
-                        name: 'socialmedia[googleplus]',
-                        fieldLabel: 'Google+',
-                        emptyText: 'https://',
-                        cls : 'socialmedia-icon googleplus_icon'
-                    }, {
                         name: 'socialmedia[twitter]',
                         fieldLabel: 'Twitter',
                         emptyText: 'https://',

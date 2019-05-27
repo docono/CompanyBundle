@@ -23,6 +23,10 @@ included translations
 - Ukrainian (v1.0.1) thanks to Olya Batyr
 - Russian (v1.0.1) thanks to Olya Batyr
 
+#### new in v1.2.2
+- removed Google+ from socialmedias
+- added Metatag accounts (Twitter & Facebook)
+
 #### new in v1.2.1
 - opening times bugfix (closing times)
 - opening times UX improvements
@@ -88,16 +92,19 @@ company:
     phone: '+41 XX XXX XX XX' 
     fax: '+41 41 670 01 70'
     email: hello@docono.io
+    vat-number: ''
 socialmedia:
     linkedin: 'https://www.linkedin.com/company/docono/'
     xing: ''
     facebook: 'http://www.facebook.com/docono.io'
-    googleplus: ''
+    vk: ''
     twitter: ''
     instagram: 'http://www.instagram.com/docono.io'
     pinterest: ''
     youtube: ''
     vimeo: ''
+    medium: ''
+    reddit: ''
 times:
     lunchbreak: true
     monday: { open: '09:00', close: '11:30', open_pm: '13:00', close_pm: '16:00' }
@@ -105,8 +112,8 @@ times:
     wednesday: { open: '09:00', close: '11:30', open_pm: '13:00', close_pm: '16:00' }
     thursday: { open: '09:00', close: '11:30', open_pm: '13:00', close_pm: '16:00' }
     friday: { open: '09:00', close: '11:30', open_pm: '13:00', close_pm: '16:00' }
-    saturday: { closed: 'on' }
-    sunday: { closed: 'on' }
+    saturday: { allday_closed: 'on' }
+    sunday: { allday_closed: 'on' }
 holiday:
     - { name: 'Easter weekend', start: 30.03.2018, end: 02.04.2018 }
     - { name: 'Christmas & New Year', start: 21.12.2018, end: 06.01.2019 }
@@ -126,6 +133,13 @@ location:
     lat: '47.050168'
     long: '8.309307'
     link: 'https://goo.gl/maps/CPzgDp35bS52'
+accounts:
+    twitter-site: 'docono'
+    twitter-creator: 'docono'
+    facebook-publisher: 'https://www.facebook.com/docono.io/'
+    facebook-author: 'https://www.facebook.com/docono.io/'
+    facebook-app-id: ''
+
 ```
 
 <a name="templates"/>
@@ -250,6 +264,7 @@ If you want to access any of the company information data, simply use the STATIC
 | `getSEO(string $language='en')` | array   | array of the 'seo' namespace           |
 | `getSchema()`                   | array   | array of the 'schema' namespace        |
 | `getLocation()`                 | array   | array of the 'location' namespace      |
+| `getAccounts()`                 | array   | array of the 'accounts' namespace      |
 
 
 

@@ -1,7 +1,7 @@
 <table class="opening-hours">
 <?php
     foreach($times as $day => $data):
-        if((!isset($data['closed']) || !$data['closed'])  && (isset($data['open']) && isset($data['close']))):
+        if((!isset($data['allday_closed']) || !$data['allday_closed'])  && (isset($data['open']) && isset($data['close']))):
 ?>
     <tr class="<?= $day; ?>">
         <td><?= strtoupper($this->t($day)) ?></td>

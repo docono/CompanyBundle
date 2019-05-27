@@ -33,9 +33,7 @@ class CompanyBundle extends AbstractPimcoreBundle
     }
 
     public function getEditmodeJsPaths() {
-        return [
-            '/bundles/company/js/document/tags/company.js',
-        ];
+        return [];
     }
 
     protected function getComposerPackageName(): string {
