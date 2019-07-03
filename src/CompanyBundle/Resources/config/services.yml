@@ -1,8 +1,14 @@
 services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  docono.company.installer: '@CompanyBundle\Installer'
   CompanyBundle\Installer:
-    public: true
-  docono_company.install:
-    class: CompanyBundle\Installer
+    arguments:
+      $bundle: "@=service('kernel').getBundle('CompanyBundle')"
+
   docono.company.template:
     class: CompanyBundle\Services\Template
     arguments: ['@templating']
