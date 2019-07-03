@@ -2,8 +2,8 @@
   "name": "docono/company-bundle",
   "type": "pimcore-bundle",
   "license": "GPL-3.0+",
-  "description": "Pimcore 5.x company information management",
-  "keywords": ["pimcore", "company information", "CompanyBundle"],
+  "description": "Pimcore 6.x company information management",
+  "keywords": ["Pimcore", 'Pimcore6', "company-information", "CompanyBundle"],
   "homepage": "https://gitlab.com/docono.io/CompanyBundle",
   "authors": [
     {
@@ -13,6 +13,9 @@
       "role": "Developer"
     }
   ],
+  "require": {
+    "pimcore/pimcore": ">=6.0.0"
+  },
 
   "autoload": {
     "psr-4": {

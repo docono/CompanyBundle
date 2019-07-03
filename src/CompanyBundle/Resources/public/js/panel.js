@@ -20,6 +20,7 @@ pimcore.plugin.docono_company.panel = Class.create({
                     xtype: 'toolbar',
                     dock: 'bottom',
                     ui: 'footer',
+                    cls: 'docono_footer',
                     items: [
                         {
                             xtype: 'tbtext',

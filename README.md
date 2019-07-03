@@ -23,6 +23,9 @@ included translations
 - Ukrainian (v1.0.1) thanks to Olya Batyr
 - Russian (v1.0.1) thanks to Olya Batyr
 
+#### new in v1.3
+- Pimcore 6 ready
+
 #### new in v1.2.2
 - removed Google+ from socialmedias
 - added Metatag accounts (Twitter & Facebook)

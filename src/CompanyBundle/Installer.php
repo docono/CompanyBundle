@@ -2,55 +2,48 @@
 
 namespace CompanyBundle;
 
-use Pimcore\Extension\Bundle\Installer\AbstractInstaller;
-use Pimcore\Log\Simple;
-use Pimcore\Model\Translation\Admin;
 
-class Installer extends AbstractInstaller
+use Doctrine\DBAL\Migrations\Version;
+use Doctrine\DBAL\Schema\Schema;
+use Pimcore\Db\ConnectionInterface;
+use Pimcore\Extension\Bundle\Installer\MigrationInstaller;
+use Pimcore\Log\Simple;
+use Pimcore\Migrations\MigrationManager;
+use Pimcore\Model\Translation\Admin;
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
+
+class Installer extends MigrationInstaller
 {
     private $installSourcesPath;
 
-    public function __construct()
-    {
-        parent::__construct();
-
+    public function __construct(BundleInterface $bundle, ConnectionInterface $connection, MigrationManager $migrationManager) {
         $this->installSourcesPath = __DIR__ . '/Resources/install';
+
+        parent::__construct($bundle, $connection, $migrationManager);
     }
 
-    public function canBeInstalled()
+
+    public function migrateInstall(Schema $schema, Version $version)
     {
-        return !$this->isInstalled();
+        $this->installTranslations();
     }
 
-    public function install() {
-        try {
-            fopen(__DIR__ . '/installed', 'w');
-
-            return true;
-        } catch (Exception $e) {
-            Simple::log('docono_company', 'installation failed:' . $e->getMessage());
-            return false;
-        }
-    }
-
-    public function isInstalled()
+    public function migrateUninstall(Schema $schema, Version $version)
     {
-        return (bool)file_exists(__DIR__ . '/installed');
+        // TODO: Implement migrateUninstall() method.
+    }
+
+    /**
+     * install translations
+     * @throws \Exception
+     */
+    private function installTranslations()
+    {
+        Admin::importTranslationsFromFile($this->installSourcesPath . '/admin-translations/init.csv');
     }
 
     public function needsReloadAfterInstall()
     {
         return true;
     }
-
-    public function canBeUninstalled()
-    {
-        return $this->isInstalled();
-    }
-
-    public function uninstall()
-    {
-        unlink(__DIR__ . '/installed');
-    }
-
 }

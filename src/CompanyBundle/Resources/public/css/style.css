@@ -20,7 +20,6 @@
     background-image: url('../img/megaphone.png');
 }
 
-
 .docono_icon_info {
     background-size: 20px 20px;
     background-image: url('../img/information.png');
@@ -51,6 +50,7 @@
     width: 20px !important;
     height: 20px !important;
     background-image: url('../img/rocket.png');
+    background-size: 20px;
 }
 
 .docono_icon_site {
@@ -94,7 +94,7 @@
 }
 
 .docono .x-btn.docono_style:hover {
-    background: #3C3F41 !important;
+    background: #393C3F !important;
 }
 
 .docono .x-btn.docono_style .x-btn-inner {
@@ -125,14 +125,15 @@
 }
 
 .docono_button .x-btn-inner {
-    color: #000000;
+    color: #ffffff;
     font-weight: bold;
 }
 
 .docono_button:hover .x-btn-inner {}
 
 .docono_icon_logo {
-    background: url('../img/logo.svg') center center no-repeat !important;
+    background-image: url('../img/logo.svg');
+    background-size: 24px;
 }
 
 .docono .x-tab-default-top.x-tab-active {
@@ -163,6 +164,8 @@
 .docono .times-fieldset {
     border: none !important;
 }
+
+
 
 .docono .times-fieldset table {
     width: 100%;
@@ -237,4 +240,53 @@
     background-image: url("../img/reddit.png");
 }
 
+.docono .x-tab-bar-default {
+    background: #393C3F;
+}
+
+.docono .x-tab-button-default {
+    color: #ffffff;
+}
+
+.docono .x-tab-default:first-child {
+    border-left: none;
+}
+
+.docono .x-tab-default:last-child {
+    border-right: 1px solid #616467;
+}
+
+.docono .x-tab-default {
+    border-left: 1px solid #616467;
+}
+
+.docono .x-tab-default.x-tab-active {
+    border-left: transparent;
+    border-right: transparent;
+}
+
+.docono .x-tab-default.x-tab-active + .x-tab-default {
+    border-left: transparent;
+}
+
+.docono .x-tab-default span {
+    color: #B2B4B6;
+}
+
+.docono .x-tab-default.x-tab-over:not(.x-tab-active) {
+    background: none;
+    border-left-color: #616467;
+}
+
+.docono .x-tab-default.x-tab-over span {
+    color: #ffffff;
+}
+
+.docono_footer {
+    background: #393C3F;
+}
+
+.docono_footer .x-toolbar-text-default {
+    color: #ffffff;
+}
 

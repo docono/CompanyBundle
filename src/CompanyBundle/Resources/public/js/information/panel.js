@@ -32,8 +32,9 @@ pimcore.plugin.docono_company.information.panel = Class.create({
                     xtype: 'toolbar',
                     dock: 'bottom',
                     ui: 'footer',
+                    cls: 'pimcoe_main_toolbar',
                     style: {
-                        background: 'white'
+                        background: '#f6f6f6;'
                     },
                     items: [
                         '->', {
