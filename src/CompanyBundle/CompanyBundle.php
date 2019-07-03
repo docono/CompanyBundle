@@ -11,7 +11,7 @@ class CompanyBundle extends AbstractPimcoreBundle
 
     public function getInstaller()
     {
-        return $this->container->get('docono_company.install');
+        return $this->container->get(Installer::class);
     }
 
     public function getJsPaths() {
