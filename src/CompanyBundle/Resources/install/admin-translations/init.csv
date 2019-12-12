@@ -10,6 +10,7 @@
 "docono_company_company";"Firma";"company";"компанія";"компания"
 "docono_company_company_name";"Name";"name";"назва";"название"
 "docono_company_company_address";"Adresse";"address";"адреса";"адрес"
+"docono_company_company_postbox";"Postfach";"P.O. box";"Поштова скринька";"Почтовый ящик"
 "docono_company_company_town";"Ort";"town";"місто";"город"
 "docono_company_company_postal_code";"PLZ";"postal code";"поштовий індекс";"поштовый индекс"
 "docono_company_company_region";"Region";"region";"регіон";"регион"

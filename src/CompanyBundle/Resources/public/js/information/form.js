@@ -36,6 +36,9 @@ pimcore.plugin.docono_company.information.form = Class.create({
                     }, {
                         name: 'company[address]',
                         fieldLabel: t('docono_company_company_address')
+                    },  {
+                        name: 'company[postbox]',
+                        fieldLabel: t('docono_company_company_postbox')
                     }, {
                         name: 'company[town]',
                         fieldLabel: t('docono_company_company_town')
