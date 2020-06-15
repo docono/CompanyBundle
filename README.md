@@ -23,6 +23,9 @@ included translations
 - Ukrainian (v1.0.1) thanks to Olya Batyr
 - Russian (v1.0.1) thanks to Olya Batyr
 
+#### new in v1.4
+- document tag adjustment for the latest Pimcore version
+
 #### new in v1.3
 - Pimcore 6 ready
 

@@ -63,4 +63,9 @@ class Company extends \Pimcore\Model\Document\Tag
     public function setDataFromEditmode($data) {}
 
     public function setDataFromResource($data) {}
+
+    public function isEmpty()
+    {
+        return false;
+    }
 }
