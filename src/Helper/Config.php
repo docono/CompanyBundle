@@ -1,6 +1,6 @@
 <?php
 
-namespace CompanyBundle\Helper;
+namespace docono\Bundle\CompanyBundle\Helper;
 
 use Symfony\Component\Yaml\Yaml;
 

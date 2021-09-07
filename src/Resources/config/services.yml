@@ -5,10 +5,10 @@ services:
     public: true
 
   docono.company.installer: '@CompanyBundle\Installer'
-  CompanyBundle\Installer:
+  docono\Bundle\CompanyBundle\Installer:
     arguments:
       $bundle: "@=service('kernel').getBundle('CompanyBundle')"
 
   docono.company.template:
-    class: CompanyBundle\Services\Template
+    class: docono\Bundle\CompanyBundle\Services\Template
     arguments: ['@templating']

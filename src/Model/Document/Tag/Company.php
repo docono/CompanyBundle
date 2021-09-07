@@ -1,6 +1,6 @@
 <?php
 
-namespace CompanyBundle\Model\Document\Tag;
+namespace docono\Bundle\CompanyBundle\Model\Document\Tag;
 
 use CompanyBundle\Services\Template;
 

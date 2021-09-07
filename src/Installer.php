@@ -1,6 +1,6 @@
 <?php
 
-namespace CompanyBundle;
+namespace docono\Bundle\CompanyBundle;
 
 
 use Doctrine\DBAL\Migrations\Version;

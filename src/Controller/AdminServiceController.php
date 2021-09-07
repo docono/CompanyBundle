@@ -1,8 +1,8 @@
 <?php
 
-namespace CompanyBundle\Controller;
+namespace docono\Bundle\CompanyBundle\Controller;
 
-use CompanyBundle\Helper\Config;
+use docono\Bundle\CompanyBundle\Helper\Config;
 use Pimcore\Bundle\AdminBundle\Controller\AdminController;
 use Pimcore\Bundle\AdminBundle\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

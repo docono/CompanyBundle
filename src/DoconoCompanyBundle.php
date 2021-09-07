@@ -1,11 +1,11 @@
 <?php
 
-namespace CompanyBundle;
+namespace docono\Bundle\CompanyBundle;
 
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
 
-class CompanyBundle extends AbstractPimcoreBundle
+class DoconoCompanyBundle extends AbstractPimcoreBundle
 {
     use PackageVersionTrait;
 

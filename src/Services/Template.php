@@ -1,6 +1,6 @@
 <?php
 
-namespace CompanyBundle\Services;
+namespace docono\Bundle\CompanyBundle\Services;
 
 
 use CompanyBundle\Helper\Config;
