@@ -1,17 +1,25 @@
 <?php
 
-namespace docono\Bundle\CompanyBundle\Controller;
+namespace docono\Bundle\CompanyBundle\Controller\Admin;
 
 use docono\Bundle\CompanyBundle\Helper\Config;
-use Pimcore\Bundle\AdminBundle\Controller\AdminController;
 use Pimcore\Bundle\AdminBundle\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Routing\Annotation\Route;
 
-class AdminServiceController extends AdminController
+/**
+ * @Route("/service")
+ */
+class ServiceController extends \Pimcore\Bundle\AdminBundle\Controller\AdminController
 {
 
-    public function getAction(Request $request) {
+    /**
+     * @Route("/get", name="docono_company_admin_get", methods={"GET"})
+     * @param Request $request
+     * @return JsonResponseval
+     */
+    public function getDataAction(Request $request) {
         //get site
         $site = $request->query->get('site');
         $site = $site===null? 'default': $site;
@@ -22,7 +30,12 @@ class AdminServiceController extends AdminController
         return $this->json(['success'=> true, 'data' => $data]);
     }
 
-    public function updateAction(Request $request)
+    /**
+     * * @Route("/update", name="docono_company_admin_update", methods={"GET"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function updateDataAction(Request $request)
     {
         try {
             //get all data
@@ -43,11 +56,12 @@ class AdminServiceController extends AdminController
             //generate Yaml
             $yaml = Yaml::dump($data);
 
+            if(!is_dir(Config::getPath())) {
+                mkdir(Config::getPath());
+            }
+
             //wrie Yaml file
             file_put_contents(Config::getFileForSite($site), $yaml);
-
-            // clear template cache
-            \Pimcore\Cache::clearTag("CompanyBundle_templates");
         } catch(\Exception $e) {
             return new JsonResponse(['success'=> false]);
         }

@@ -3,9 +3,8 @@
 
 * [Description](#getting-started)
 * [Configuration File](#configuration-file)
-* [Templates](#templates)
-* [Rendering Templates](#rendering-templates)
 * [Configuration Helper](#configuration-helper)
+* [Example](#example)
 
 ## Description
 The Company Bundle provides to the backend user a simplified management panel to edit all important company information such as:
@@ -22,6 +21,11 @@ included translations
 - English (v1.0.0)
 - Ukrainian (v1.0.1) thanks to Olya Batyr
 - Russian (v1.0.1) thanks to Olya Batyr
+
+#### new in v2
+- Pimcore 10 ready
+- removed templates
+- removed the doucment tag
 
 #### new in v1.4
 - document tag adjustment for the latest Pimcore version
@@ -65,8 +69,7 @@ DO CHECK YOUR TIMES AFTER UPDATE!
 * install the Bundle in the Extension Management Tool in Pimcore
 * make sure the cache is flushed and Pimcore reloaded
 * open the "Company Information" panel and fill in the company details
-* add ```<?= $this->company('demoInformations'); ?>``` to your view
-* your page will show now all contact details and added a Schema.org JSON-LD to the markup
+* assign data to the view in your controller ```$this->twig->addGlobal('companyInfo', Config::getData($siteID));```
 
 <a name="configuration-file"/>
 
@@ -148,107 +151,6 @@ accounts:
 
 ```
 
-<a name="templates"/>
-
-## Templates
-CompanyBundle uses normal php templates since v1.2.0.
-
-### Types
-There are three different kind of templates: html, schema and combined.
-
-Each typ has its own folder for the templates, which are defined in the Template Service as constants.
-```php
-\CompanyBundle\Services\Template::html
-\CompanyBundle\Services\Template::schema
-\CompanyBundle\Services\Template::combined
-```
-
-### Overriding
-If you do not like the standard templates simply override it with a template in the app template dir `app/Resources/views'.
-
-#### example
-To override the address HTML template (`address_html.html.php`) create following file:
-`app/Resources/CompanyBundle/views/docono_company/address_html.html.php`
-
-To override the address Schema.org template (`address_schema.html.php`) create following file:
-`app/Resources/CompanyBundle/views/docono_company/address_schema.html.php`
-
-### Custom Template
-To use your own template simply create your template in a folder the views dir.
-
-#### example
-To build your own Stemplate creat following file:
-`app/Resources/views/myTemplates/demo.html.php`
-
-Implementing it into your view:
-```php
-<?= $this->company('demoTemplate', ['tpl'=>'myTemplates/demo.html.php']); ?>
-```
-
-### caching
-All templates are cached and assigned to the tag 'CompanyBundle_templates';
-
-
-<a name="rendering-templates"/>
-
-## Rendering Templates
-
-Template options:
-* address         [only address]
-* times           [only opening times]
-* socialmedia     [only social media] (fontawesome ready)
-* full            [all information]
-* template        [using your customised template]
-
-Type options:
-* html  [only HTML]
-* schema    [only Schema.org JSON-LD]
-* combined  [HTML and JSON-LD]
-
-### Document Tag
-#### configuration
-
-| Name               | Type    | Configuration                                                                                               |
-|--------------------|---------|-------------------------------------------------------------------------------------------------------------|
-| `tpl`              | string  | standard template name or path - default: `full`                                                            |
-| `type`             | string  | only for standard templats needed, e.g.: `\CompanyBundle\Services\Template::html` - default: `combined`     |
- 
-#### basic usage
-```php
-<?= $this->company('demoInformations'); ?>
-```
-
-
-#### advanced usage
-```php
-<?= $this->company('demoInformations', ['tpl'=>'address', 'type'=>\CompanyBundle\Services\Template::html]); ?>
-```
-
-### Template Service
-The Template Render Service is registered as `docono.company.template`
-
-#### Methods
-
-| Name                                                   | Return   | Description                                |
-|--------------------------------------------------------|----------|--------------------------------------------|
-| `template(String $tpl)`                                | string   | render custom template                     |
-| `address(String $type=self::combined)`                 | string   | render standard address template           |
-| `times(String $type=self::combined)`                   | string   | render standard times template             |
-| `socialmedia()`                                        | string   | render standard social media html template |
-| `full(String $type=self::combined)`                    | string   | render standard full template              |
-| `__toString()`                                         | string   | full() alias                               |
-
-
-#### basic usage
-```php
-<?= $this->container->get('docono.company.template'); ?>
-```
-
-#### advanced usage
-```php
-<?= $this->container->get('docono.company.template')->address(\CompanyBundle\Services\Template::combined); ?>
-<?= $this->container->get('docono.company.template')->template('myTemplates/demo.html.php'); ?>
-```
 
 <a name="configuration-helper"/>
 
@@ -273,8 +175,18 @@ If you want to access any of the company information data, simply use the STATIC
 | `getAccounts()`                 | array   | array of the 'accounts' namespace      |
 
 
+<a name="example"/>
 
+## Example
 ```php
-<?= CompanyBundle\Helper\Config::getCompany()['name']; ?>
-<?= CompanyBundle\Helper\Config::getData()['socialmedia']['facebook']; ?>
+        if (Site::isSiteRequest()) {
+            $companyData = Config::getData();
+
+        } else {
+            $site = Pimcore\Tool\Frontend::getSiteForDocument($this->document);
+            $siteID = !$site ? 'default' : 'site_' . $site->getId();
+            $companyData = Config::getData($siteID);
+        }
+
+        $this->twig->addGlobal('companyInfo', $companyData);
 ```

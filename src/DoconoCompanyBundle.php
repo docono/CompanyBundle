@@ -11,24 +11,24 @@ class DoconoCompanyBundle extends AbstractPimcoreBundle
 
     public function getInstaller()
     {
-        return $this->container->get(Installer::class);
+        return $this->container->get('docono.company.installer');
     }
 
     public function getJsPaths() {
         return [
-            '/bundles/company/js/plugin.js',
-	        '/bundles/company/js/store/country.js',
-            '/bundles/company/js/panel.js',
-            '/bundles/company/js/information/panel.js',
-            '/bundles/company/js/information/form.js',
-            '/bundles/company/js/times/form.js',
-            '/bundles/company/js/seo/form.js'
+            '/bundles/doconocompany/js/plugin.js',
+	        '/bundles/doconocompany/js/store/country.js',
+            '/bundles/doconocompany/js/panel.js',
+            '/bundles/doconocompany/js/information/panel.js',
+            '/bundles/doconocompany/js/information/form.js',
+            '/bundles/doconocompany/js/times/form.js',
+            '/bundles/doconocompany/js/seo/form.js'
         ];
     }
 
     public function getCssPaths() {
         return [
-            '/bundles/company/css/style.css'
+            '/bundles/doconocompany/css/style.css'
         ];
     }
 

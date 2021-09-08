@@ -4,11 +4,14 @@ services:
     autoconfigure: true
     public: true
 
-  docono.company.installer: '@CompanyBundle\Installer'
-  docono\Bundle\CompanyBundle\Installer:
-    arguments:
-      $bundle: "@=service('kernel').getBundle('CompanyBundle')"
+  docono\Bundle\CompanyBundle\Controller\:
+    resource: '../../Controller'
+    public: true
+    tags: [ 'controller.service_arguments' ]
 
-  docono.company.template:
-    class: docono\Bundle\CompanyBundle\Services\Template
-    arguments: ['@templating']
+  docono.company.installer:
+    class: docono\Bundle\CompanyBundle\Installer
+    arguments:
+      $bundle: "@=service('kernel').getBundle('DoconoCompanyBundle')"
+
+  docono\Bundle\CompanyBundle\Installer: '@docono.company.installer'
