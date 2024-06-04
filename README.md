@@ -22,6 +22,9 @@ included translations
 - Ukrainian (v1.0.1) thanks to Olya Batyr
 - Russian (v1.0.1) thanks to Olya Batyr
 
+#### new in v3
+- Pimcore 11 ready
+- 
 #### new in v2
 - Pimcore 10 ready
 - removed templates

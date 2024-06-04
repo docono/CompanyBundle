@@ -4,14 +4,15 @@ namespace docono\Bundle\CompanyBundle;
 
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
+use Pimcore\Extension\Bundle\PimcoreBundleAdminClassicInterface;
 
-class DoconoCompanyBundle extends AbstractPimcoreBundle
+class DoconoCompanyBundle extends AbstractPimcoreBundle implements PimcoreBundleAdminClassicInterface
 {
     use PackageVersionTrait;
 
     public function getInstaller()
     {
-        return $this->container->get('docono.company.installer');
+        return $this->container->get(Installer::class);
     }
 
     public function getJsPaths() {
@@ -34,9 +35,5 @@ class DoconoCompanyBundle extends AbstractPimcoreBundle
 
     public function getEditmodeJsPaths() {
         return [];
-    }
-
-    protected function getComposerPackageName(): string {
-        return 'docono/company-bundle';
     }
 }

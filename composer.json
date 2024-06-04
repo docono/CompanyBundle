@@ -2,9 +2,9 @@
   "name": "docono/company-bundle",
   "type": "pimcore-bundle",
   "license": "GPL-3.0+",
-  "description": "Pimcore 10.x company information management",
-  "keywords": ["Pimcore", "Pimcore10", "company-information", "CompanyBundle"],
-  "homepage": "https://gitlab.com/docono.io/CompanyBundle",
+  "description": "Pimcore 11.x company information management",
+  "keywords": ["Pimcore", "Pimcore11", "company-information", "CompanyBundle"],
+  "homepage": "https://github.com/docono/CompanyBundle",
   "authors": [
     {
       "name": "DOCONO.io Renzo Müller",
@@ -14,7 +14,7 @@
     }
   ],
   "require": {
-    "pimcore/pimcore": "^10.0"
+    "pimcore/pimcore": "^11.0"
   },
 
   "autoload": {
