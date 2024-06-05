@@ -3,7 +3,7 @@
 namespace docono\Bundle\CompanyBundle\Controller\Admin;
 
 use docono\Bundle\CompanyBundle\Helper\Config;
-use Pimcore\Bundle\AdminBundle\HttpFoundation\JsonResponse;
+use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/service")
  */
-class ServiceController extends \Pimcore\Bundle\AdminBundle\Controller\AdminController
+class ServiceController extends AdminAbstractController
 {
 
     /**
@@ -63,10 +63,10 @@ class ServiceController extends \Pimcore\Bundle\AdminBundle\Controller\AdminCont
             //wrie Yaml file
             file_put_contents(Config::getFileForSite($site), $yaml);
         } catch(\Exception $e) {
-            return new JsonResponse(['success'=> false]);
+            return $this->json(['success'=> false]);
         }
 
-        return new JsonResponse(['success'=> true]);
+        return $this->json(['success'=> true]);
     }
 
     private function gnerateArrayTree(array $array) {

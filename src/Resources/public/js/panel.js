@@ -1,5 +1,5 @@
-pimcore.registerNS("pimcore.plugin.docono_company.panel");
-pimcore.plugin.docono_company.panel = Class.create({
+pimcore.registerNS("pimcore.plugin.DoconoCompanyBundle.panel");
+pimcore.plugin.DoconoCompanyBundle.panel = Class.create({
 
     initialize: function () {
         this.getLayout();
@@ -72,7 +72,7 @@ pimcore.plugin.docono_company.panel = Class.create({
                 key = "site_" + id;
             }
 
-            var infoPanel = new pimcore.plugin.docono_company.information.panel(key, record.data.domain);
+            var infoPanel = new pimcore.plugin.DoconoCompanyBundle.information.panel(key, record.data.domain);
             me.panel.add(infoPanel.getLayout());
         });
 

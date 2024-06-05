@@ -1,5 +1,5 @@
-pimcore.registerNS("pimcore.plugin.docono_company.store.country");
-pimcore.plugin.docono_company.store.country = Class.create({
+pimcore.registerNS("pimcore.plugin.DoconoCompanyBundle.store.country");
+pimcore.plugin.DoconoCompanyBundle.store.country = Class.create({
 
     getStore: function () {
         if(!this.store) {

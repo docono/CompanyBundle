@@ -25,24 +25,24 @@ class Installer extends AbstractInstaller
     }
 
 
-    public function install()
+    public function install(): void
     {
         $this->installTranslations();
 
         fopen(PIMCORE_CONFIGURATION_DIRECTORY . '/doconoCompanyBundleInstalled', 'w');
     }
 
-    public function uninstall()
+    public function uninstall(): void
     {
-        // TODO: Implement migrateUninstall() method.
+
     }
 
-    public function isInstalled()
+    public function isInstalled(): bool
     {
         return file_exists(PIMCORE_CONFIGURATION_DIRECTORY . '/doconoCompanyBundleInstalled');
     }
 
-    public function canBeInstalled()
+    public function canBeInstalled(): bool
     {
         return !file_exists(PIMCORE_CONFIGURATION_DIRECTORY . '/doconoCompanyBundleInstalled');
     }
@@ -51,12 +51,12 @@ class Installer extends AbstractInstaller
      * install translations
      * @throws \Exception
      */
-    private function installTranslations()
+    private function installTranslations(): void
     {
         Translation::importTranslationsFromFile($this->installSourcesPath . '/admin-translations/init.csv', Translation::DOMAIN_ADMIN, false, Tool\Admin::getLanguages());
     }
 
-    public function needsReloadAfterInstall()
+    public function needsReloadAfterInstall(): bool
     {
         return true;
     }

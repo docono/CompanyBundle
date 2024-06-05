@@ -1,5 +1,5 @@
-pimcore.registerNS("pimcore.plugin.docono_company.information.panel");
-pimcore.plugin.docono_company.information.panel = Class.create({
+pimcore.registerNS("pimcore.plugin.DoconoCompanyBundle.information.panel");
+pimcore.plugin.DoconoCompanyBundle.information.panel = Class.create({
 
     initialize: function (id, name) {
         this.id = id;
@@ -10,9 +10,9 @@ pimcore.plugin.docono_company.information.panel = Class.create({
         var me = this;
 
         if (!this.panel) {
-            this.informationForm = new pimcore.plugin.docono_company.information.form(this.id);
-            this.timesForm = new pimcore.plugin.docono_company.times.form(this.id);
-            this.seoForm = new pimcore.plugin.docono_company.seo.form(this.id);
+            this.informationForm = new pimcore.plugin.DoconoCompanyBundle.information.form(this.id);
+            this.timesForm = new pimcore.plugin.DoconoCompanyBundle.times.form(this.id);
+            this.seoForm = new pimcore.plugin.DoconoCompanyBundle.seo.form(this.id);
 
             this.panel = Ext.create('Ext.tab.Panel', {
                 id: "docono_company_imformation_panel_" + this.id,

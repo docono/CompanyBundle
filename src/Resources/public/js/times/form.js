@@ -1,5 +1,5 @@
-pimcore.registerNS("pimcore.plugin.docono_company.times.form");
-pimcore.plugin.docono_company.times.form = Class.create({
+pimcore.registerNS("pimcore.plugin.DoconoCompanyBundle.times.form");
+pimcore.plugin.DoconoCompanyBundle.times.form = Class.create({
     holidayId: 0,
 
     initialize: function (id) {

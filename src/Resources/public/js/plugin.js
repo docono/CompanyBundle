@@ -1,12 +1,19 @@
-pimcore.registerNS("pimcore.plugin.docono_company");
 
-pimcore.plugin.docono_company = Class.create(pimcore.plugin.admin, {
-    initialize: function () {
-        document.addEventListener(pimcore.events.preMenuBuild, this.preMenuBuild.bind(this));
+pimcore.registerNS("pimcore.plugin.DoconoCompanyBundle");
+
+pimcore.plugin.DoconoCompanyBundle = Class.create({
+    getClassName: function (){
+        return "pimcore.plugin.DoconoCompanyBundle";
     },
 
-    getClassName: function () {
-        return "pimcore.plugin.docono_company";
+    initialize: function () {
+        if (pimcore.events.preMenuBuild) {
+            document.addEventListener(pimcore.events.preMenuBuild, this.preMenuBuild.bind(this));
+        } else {
+            document.addEventListener(pimcore.events.pimcoreReady, this.pimcoreReady.bind(this));
+        }
+        // pimcore.plugin.broker.registerPlugin(this);
+        // document.addEventListener(pimcore.events.preMenuBuild, this.preMenuBuild.bind(this));
     },
 
     preMenuBuild: function (e) {
@@ -14,7 +21,7 @@ pimcore.plugin.docono_company = Class.create(pimcore.plugin.admin, {
 
         menu.mybundle = {
             label: t('docono_company_title'),
-            iconCls: 'docono-company-menu-icon',
+            iconCls: 'docono_menu_icon',
             priority: 42,
             shadow: false,
             handler: this.openBundlePanel,
@@ -27,7 +34,7 @@ pimcore.plugin.docono_company = Class.create(pimcore.plugin.admin, {
         try {
             pimcore.globalmanager.get("plugin_pimcore_docono_company").activate();
         } catch (e) {
-            pimcore.globalmanager.add("plugin_pimcore_docono_company", new pimcore.plugin.docono_company());
+            pimcore.globalmanager.add("plugin_pimcore_docono_company", new pimcore.plugin.DoconoCompanyBundle.panel());
         }
     }
 
@@ -42,7 +49,7 @@ pimcore.plugin.docono_company = Class.create(pimcore.plugin.admin, {
     //             pimcore.globalmanager.get("docono_company").activate();
     //         }
     //         catch (e) {
-    //             companyTab =  pimcore.globalmanager.add("docono_company", new  pimcore.plugin.docono_company.panel());
+    //             companyTab =  pimcore.globalmanager.add("docono_company", new  pimcore.plugin.DoconoCompanyBundle.panel());
     //         };
     //
     //         return false;
@@ -56,4 +63,4 @@ pimcore.plugin.docono_company = Class.create(pimcore.plugin.admin, {
     // },
 });
 
-var docono_companyPlugin = new pimcore.plugin.docono_company();
+var DoconoCompanyBundle = new pimcore.plugin.DoconoCompanyBundle();

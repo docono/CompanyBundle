@@ -1,9 +1,5 @@
 .docono_menu_icon {
-    background-size: 30px 30px !important;
-    background-image: url('../img/megaphone.png') !important;
-}
-.docono_menu_icon:hover {
-    background-size: 30px 30px !important;
+    background-size: contain;
     background-image: url('../img/megaphone_white.png') !important;
 }
 
@@ -14,10 +10,6 @@
 .docono_icon_megaphone {
     background-size: 20px 20px;
     background-image: url('../img/megaphone_white.png');
-}
-
-.x-tab-active .docono_icon_megaphone {
-    background-image: url('../img/megaphone.png');
 }
 
 .docono_icon_info {
@@ -60,6 +52,7 @@
 
 .docono_icon_delete {
     background-image: url('../img/delete_orange.png');
+    background-size: 18px;
 }
 
 .docono_icon_add {

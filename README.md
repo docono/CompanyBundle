@@ -24,7 +24,7 @@ included translations
 
 #### new in v3
 - Pimcore 11 ready
-- 
+
 #### new in v2
 - Pimcore 10 ready
 - removed templates
@@ -68,8 +68,9 @@ DO CHECK YOUR TIMES AFTER UPDATE!
 
 ##Getting Started
 
-* download bundle with Composer ```"docono/company-bundle": "^1.1"```
-* install the Bundle in the Extension Management Tool in Pimcore
+* download bundle with Composer ```"composer require docono/company-bundle"```
+* register the Bundle in the ```config/bundles.php```
+* install the Bundle in the console ```bin/console pimcore:bundle:install DoconoCompanyBundle```
 * make sure the cache is flushed and Pimcore reloaded
 * open the "Company Information" panel and fill in the company details
 * assign data to the view in your controller ```$this->twig->addGlobal('companyInfo', Config::getData($siteID));```

@@ -1,5 +1,5 @@
-pimcore.registerNS("pimcore.plugin.docono_company.information.form");
-pimcore.plugin.docono_company.information.form = Class.create({
+pimcore.registerNS("pimcore.plugin.DoconoCompanyBundle.information.form");
+pimcore.plugin.DoconoCompanyBundle.information.form = Class.create({
 
     initialize: function (id) {
         this.id = id;
@@ -52,7 +52,7 @@ pimcore.plugin.docono_company.information.form = Class.create({
                     },{
                         xtype: 'combo',
                         name: 'company[country]',
-                        store: new pimcore.plugin.docono_company.store.country().getStore(),
+                        store: new pimcore.plugin.DoconoCompanyBundle.store.country().getStore(),
                         fieldLabel: t("docono_company_company_country"),
                         queryMode: 'local',
                         displayField: 'name',

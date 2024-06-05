@@ -1,5 +1,5 @@
-pimcore.registerNS("pimcore.plugin.docono_company.seo.form");
-pimcore.plugin.docono_company.seo.form = Class.create({
+pimcore.registerNS("pimcore.plugin.DoconoCompanyBundle.seo.form");
+pimcore.plugin.DoconoCompanyBundle.seo.form = Class.create({
 
   initialize: function (id) {
     this.id = id;
