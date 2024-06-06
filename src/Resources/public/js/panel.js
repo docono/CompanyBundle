@@ -66,8 +66,8 @@ pimcore.plugin.DoconoCompanyBundle.panel = Class.create({
 
         sites.each(function (record) {
             var id = record.data.id;
-            if (id == "default") {
-                key = "default";
+            if (id == "site_0") {
+                key = "site_0";
             } else {
                 key = "site_" + id;
             }

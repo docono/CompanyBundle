@@ -15,8 +15,11 @@ abstract class Config
     /**
      * @var array
      */
-    private static $data = null;
+    private static array $data = [];
 
+    /**
+     * @return string
+     */
     public static function getPath(): string
     {
         return self::$configPath;
@@ -25,15 +28,21 @@ abstract class Config
     /**
      * @return string
      */
-    public static function getFile()
+    public static function getSite()
     {
         if (\Pimcore\Model\Site::isSiteRequest()) {
-            $site = 'site_' . \Pimcore\Model\Site::getCurrentSite()->getId();
+            return 'site_' . \Pimcore\Model\Site::getCurrentSite()->getId();
         } else {
-            $site = 'default';
+            return 'site_0';
         }
+    }
 
-        return self::getFileForSite($site);
+    /**
+     * @return string
+     */
+    public static function getFile()
+    {
+        return self::getFileForSite(self::getSite());
     }
 
     /**
@@ -50,17 +59,21 @@ abstract class Config
      */
     public static function getData(string $site = null): array
     {
-        if (self::$data === null) {
+        if($site === null) {
+            $site = self::getSite();
+        }
+
+        if (empty(self::$data[$site]) || self::$data[$site] === null) {
             $filePath = !$site ? self::getFile() : self::getFileForSite($site);
 
             if (is_file($filePath)) {
-                self::$data = Yaml::parse(file_get_contents($filePath));
+                self::$data[$site]  = Yaml::parse(file_get_contents($filePath));
             } else {
                 return [];
             }
         }
 
-        return self::$data;
+        return self::$data[$site];
     }
 
     /**

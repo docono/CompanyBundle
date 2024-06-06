@@ -22,7 +22,10 @@ class ServiceController extends AdminAbstractController
     public function getDataAction(Request $request) {
         //get site
         $site = $request->query->get('site');
-        $site = $site===null? 'default': $site;
+
+        if($site === null) {
+            $site = 'site_0';
+        }
 
         //load data
         $data = Config::getData($site);

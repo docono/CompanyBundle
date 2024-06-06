@@ -14,13 +14,14 @@ The Company Bundle provides to the backend user a simplified management panel to
 * Schema.org details
 * business location coordinates
 
-The Bundle includes also HTML and Schema.org templates which easily be extended and implemented with a Pimcore Document Tag.
-
 included translations
 - German (v1.0.0)
 - English (v1.0.0)
 - Ukrainian (v1.0.1) thanks to Olya Batyr
 - Russian (v1.0.1) thanks to Olya Batyr
+
+#### new in v3.0.1
+- site id bugfix for main site
 
 #### new in v3
 - Pimcore 11 ready
@@ -28,7 +29,7 @@ included translations
 #### new in v2
 - Pimcore 10 ready
 - removed templates
-- removed the doucment tag
+- removed the document tag
 
 #### new in v1.4
 - document tag adjustment for the latest Pimcore version
@@ -79,19 +80,19 @@ DO CHECK YOUR TIMES AFTER UPDATE!
 
 ## Configuration File
 
-Each site has its own YAML configuration file which is located in the app config folder `/app/config`.
+Each site has its own YAML configuration file which is located in the app config folder `/var/config`.
 
 #### site ids
 The Bundle uses the Pimcore site ids:
 
-* default: the main site 
+* site_0: the main site 
 * site_1: site with the id 1
 * site_2: site with the id 2
 * etc
 
 #### example
-`/app/config/docono_company.default.yml`
-`/app/config/docono_company.site_1.yml`
+`/var/config/docono_company.site_0.yml`
+`/var/config/docono_company.site_1.yml`
 
 #### config YAML
 ```yml
@@ -188,7 +189,7 @@ If you want to access any of the company information data, simply use the STATIC
 
         } else {
             $site = Pimcore\Tool\Frontend::getSiteForDocument($this->document);
-            $siteID = !$site ? 'default' : 'site_' . $site->getId();
+            $siteID = !$site ? 'site_0' : 'site_' . $site->getId();
             $companyData = Config::getData($siteID);
         }
 
